@@ -1,0 +1,132 @@
+@CHARSET "UTF-8";
+
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+body {
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+/* 共通タグ */
+h1 {
+	border-bottom: solid 3px skyblue;
+	position: relative;
+	font-size: 25px;
+}
+
+h1:after {
+	position: absolute;
+	content: " ";
+	display: block;
+	border-bottom: solid 3px #ffc778;
+	bottom: -3px;
+	width: 30%;
+}
+
+nav {
+	margin-bottom: 20px;
+}
+
+.image {
+	margin-bottom: 20px;
+}
+
+.black{
+	color: rgb(0,0,0);
+}
+
+a:hover{
+	color: rgb(0,0,0);
+}
+
+/* 共通クラス */
+.textcenter {
+	text-align: center;
+}
+
+/* login.jsp */
+#login form, p {
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+#login p {
+	margin-top: 20px;
+}
+
+#login img {
+	padding: 40px;
+}
+
+/* newuser.jsp */
+#newuser form {
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+/* newusercheck.jsp */
+#newusercheck .container form {
+	margin-top: 30px;
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+/* contents.jsp */
+.sample-box-3 {
+	border: 4px double #ddd;
+	margin: 2em 0;
+	padding: 2em;
+	margin-top: 10px;
+}
+
+#contents article {
+	margin-top: 20px;
+}
+
+#contents .title {
+	font-size: 20px;
+	margin: 0;
+	padding: 0;
+}
+#contents table th{
+	text-align:center;
+}
+#contents button.back{
+	background:linear-gradient(to bottom,#607d8b,#eceff1,#607d8b);
+	width: 80px;
+	padding: 10px;
+	border-radius:10px;
+
+}
+
+#contents a {
+	text-decoration: none;
+}
+
+#contents p {
+	color: rgb(0, 0, 0);
+}
+
+/* contentslist.jsp */
+section {
+	margin: 10px;
+}
+
+/* manager.jsp */
+#manager img{
+	margin-top:20px;
+}
+
+#manager .listmargin{
+	margin-top:20px;
+}
+
+/* footer */
+footer {
+	text-align: center;
+	display: block;
+	width: 100%;
+	padding: 20px;
+	margin-top: 30px;
+	background-color: rgb(237, 237, 237);
+	color: rgb(46, 46, 46);
+}
