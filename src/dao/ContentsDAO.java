@@ -31,7 +31,7 @@ public class ContentsDAO extends DaoBase {
 			    contentsbean.setContentsDate(rs.getDate("contentsDate"));
 			    contentsbean.setStartDate(rs.getDate("startDate"));
 			    contentsbean.setEndDate(rs.getDate("endDate"));
-			    contentsbean.setContentsPicture(rs.getBlob("contentsPicture"));
+			    contentsbean.setContentsPicture(rs.getBinaryStream("contentsPicture"));
 
 				arraycontents.add(contentsbean);
 			}
@@ -68,7 +68,7 @@ public class ContentsDAO extends DaoBase {
 			    contentsbean.setContentsDate(rs.getDate("contentsDate"));
 			    contentsbean.setStartDate(rs.getDate("startDate"));
 			    contentsbean.setEndDate(rs.getDate("endDate"));
-			    contentsbean.setContentsPicture(rs.getBlob("contentsPicture"));
+			    contentsbean.setContentsPicture(rs.getBinaryStream("contentsPicture"));
 
 				arraycontents.add(contentsbean);
 			}
@@ -104,7 +104,7 @@ public class ContentsDAO extends DaoBase {
 			contentsbean.setContentsDate(rs.getDate("contentsDate"));
 			contentsbean.setStartDate(rs.getDate("startDate"));
 			contentsbean.setEndDate(rs.getDate("endDate"));
-			contentsbean.setContentsPicture(rs.getBlob("contentsPicture"));
+			contentsbean.setContentsPicture(rs.getBinaryStream("contentsPicture"));
 
 
 		}catch(Exception e){

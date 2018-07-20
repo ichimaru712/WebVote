@@ -6,9 +6,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,35 +31,10 @@ import model.ContentsdataBean;
  * Servlet implementation class InsertContents
  */
 @WebServlet("/InsertContents")
+@MultipartConfig(maxFileSize=1048576)
 public class InsertContents extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public InsertContents() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		ContentsDAO contentsdao = new ContentsDAO();
-		
-		ContentsBean contentsbean = (ContentsBean)session.getAttribute("insertcontents");
-		contentsdao.contentsInsert(contentsbean.getContentsID(), contentsbean.getContentsName(), contentsbean.getStartDate(), contentsbean.getEndDate(), (InputStream)contentsbean.getContentsPicture());;
-		
-		request.getRequestDispatcher("GetContents").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+    
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -63,8 +42,42 @@ public class InsertContents extends HttpServlet {
 		
 		String id = RandomStringUtils.randomAlphabetic(10)+RandomStringUtils.randomNumeric(10);//ランダム生成
 		String name = request.getParameter("name");
-		Date start = Date.valueOf(request.getParameter("start"));
-		Date end = Date.valueOf(request.getParameter("end"));
+		
+		java.sql.Date start = null;
+		Date end = null;
+		try{
+			// String → java.util.Date → java.sql.Date
+			SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd' 'hh:mm");
+			
+			String str_start = request.getParameter("start");
+			String str_end = request.getParameter("end");
+			
+			// input type="date"の値から余計な文字列を削除
+			str_start = str_start.replace("T", " ");
+			str_end = str_end.replace("T", " ");
+			
+			java.util.Date util_start = new java.util.Date();
+			java.util.Date util_end = new java.util.Date();
+			
+			// String → java.util.Date
+			util_start = sFormat.parse(str_start);
+			util_end = sFormat.parse(str_end);
+			
+			// java.util.Date → java.sql.Date
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(util_start);
+			calendar.set(Calendar.HOUR_OF_DAY, 0);
+			calendar.set(Calendar.MINUTE, 0);
+			calendar.set(Calendar.SECOND, 0);
+			calendar.set(Calendar.MILLISECOND, 0);
+			start = new java.sql.Date(calendar.getTimeInMillis());
+			
+			calendar.setTime(util_end);
+			end = new java.sql.Date(calendar.getTimeInMillis());
+			
+		}catch (Exception e) {
+			System.out.println(e);
+		}
 		//画像挿入処理
 		InputStream is= null;
 		Part filePart = request.getPart("picture");
@@ -72,7 +85,7 @@ public class InsertContents extends HttpServlet {
 			is = filePart.getInputStream();
 		}
 		
-		ContentsBean contentsbean = new ContentsBean(id, name, null, start, end, (Blob)is);
+		ContentsBean contentsbean = new ContentsBean(id, name, null, start, end, is);
 		BufferedInputStream bis = new BufferedInputStream(is);
 		BufferedImage bi = ImageIO.read(bis);
 		

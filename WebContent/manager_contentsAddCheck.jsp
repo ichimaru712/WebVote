@@ -108,9 +108,9 @@
 		                </div>
 		            </div> 
 				</div>
-				<button type="button" class="btn btn-secondary">戻る</button>
-				<form action="InsertContents" method="get">
-                	<button type="button" class="btn btn-primary">登録</button>
+				<button type="button" class="btn btn-secondary" onclick="history.back()">戻る</button>
+				<form action="InsertContentsDB" method="post">
+                	<button type="submit" class="btn btn-primary">登録</button>
                 </form>
 			</main>
 		</div>
