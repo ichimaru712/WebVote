@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import ="model.UserBean" import ="model.PasswordBean"%>
 <!-- 新規登録確認画面 -->
 <%
-UserBean user = (UserBean)session.getAttribute("newuser");
+UserBean user = (UserBean)session.getAttribute("loginUser");
 PasswordBean password = (PasswordBean)session.getAttribute("userpass");
 %>
 <!DOCTYPE html>
@@ -50,7 +50,7 @@ PasswordBean password = (PasswordBean)session.getAttribute("userpass");
                 <div class="form-group row">
     				<label for="birthday" class="col-sm-3 col-form-label">生年月日</label>
    					<div class="col-sm-9">
-     					<input type="text" readonly class="form-control-plaintext" id="birthday" value=<%=user.getBirthday() %>>>
+     					<input type="text" readonly class="form-control-plaintext" id="birthday" value=<%=user.getBirthday() %>>
   					</div>
 				</div>
                 <div class="form-group row">
