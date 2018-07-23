@@ -38,7 +38,7 @@
     </nav>
 
     <div class="container">
-    	<p><%= contents.get(0).getContentsID() %></p>
+    	<p></p>
         <div class="image"><img class="img-fluid" src="img/contents_test.jpeg" width="100%" alt="コンテンツ一覧"></div>
         <div class="row">
             <!-- 固定サイドメニュー -->

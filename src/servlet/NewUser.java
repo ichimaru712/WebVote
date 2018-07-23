@@ -38,7 +38,7 @@ public class NewUser extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 
-   UserBean userbean =  (UserBean)session.getAttribute("newuser");
+		UserBean userbean =  (UserBean)session.getAttribute("newuser");
 		PasswordBean passwordbean = (PasswordBean)session.getAttribute("userpass");
 
 		UserDAO userdao = new UserDAO();
