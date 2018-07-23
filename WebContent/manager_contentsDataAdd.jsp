@@ -22,7 +22,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link" href="manager.jsp">管理者<span class="sr-only">(current)</span></a></li>
-				<li class="nav-item"><a class="nav-link" href="logout.jsp">ログアウト</a>
+				<li class="nav-item"><a class="nav-link" href="LoginServlet">ログアウト</a>
 				</li>
 			</ul>
 		</div>
@@ -74,7 +74,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="birthday">生年月日</label><br> 
+						<label for="birthday">生年月日</label><br>
 						<input type="date" class="form-control" name="birthday">
 					</div>
 					<div class="form-group">
@@ -94,7 +94,7 @@
 	<footer class="footer">
 		<small>Copyright &copy; Sato Team, all rights reserved.</small>
 	</footer>
-	
+
 	<script>
 		function check(){
 			flg = 0;

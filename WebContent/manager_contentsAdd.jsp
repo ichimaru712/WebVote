@@ -22,7 +22,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link" href="manager.jsp">管理者<span class="sr-only">(current)</span></a></li>
-				<li class="nav-item"><a class="nav-link" href="logout.jsp">ログアウト</a>
+				<li class="nav-item"><a class="nav-link" href=LoginServlet>ログアウト</a>
 				</li>
 			</ul>
 		</div>
@@ -65,7 +65,7 @@
 						<input type="text" class="form-control" name="name" id="contentsName" placeholder="コンテンツ名">
 					</div>
 					<div class="form-group">
-						<label for="start">投票開始日</label><br> 
+						<label for="start">投票開始日</label><br>
 						<input type="datetime-local" class="form-control" name="start">
 					</div>
 					<div class="form-group">
@@ -85,7 +85,7 @@
 	<footer class="footer">
 		<small>Copyright &copy; Sato Team, all rights reserved.</small>
 	</footer>
-	
+
 	<script>
 		function check(){
 			flg = 0;
@@ -100,7 +100,7 @@
 			}
 		}
 	</script>
-	
+
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
