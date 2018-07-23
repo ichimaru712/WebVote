@@ -31,7 +31,7 @@
                     <a class="nav-link" href="mypage.jsp">マイページ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.jsp">ログアウト</a>
+                    <a class="nav-link" href="LoginServlet">ログアウト</a>
                 </li>
             </ul>
         </div>

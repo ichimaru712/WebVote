@@ -22,7 +22,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link" href="manager.jsp">管理者<span class="sr-only">(current)</span></a></li>
-				<li class="nav-item"><a class="nav-link" href="logout.jsp">ログアウト</a>
+				<li class="nav-item"><a class="nav-link" href="LoginServlet">ログアウト</a>
 				</li>
 			</ul>
 		</div>
@@ -88,7 +88,7 @@
 						<label for="userName">ユーザ名</label>
 						<input type="text" class="form-control" id="userName" name="username" value="(ユーザ名)" placeholder="ユーザ名">
 					</div>
-					<label for="birthday">生年月日</label><br> 
+					<label for="birthday">生年月日</label><br>
 					<input type="date" class="form-control" name="birthday" value="2017-06-01">
 	                <label for="sex">性別</label><br>
 	                <div class="radio-inline">
@@ -130,7 +130,7 @@
 	        if (document.form.userid.value == "" || document.form.username.value == "" || document.form.birthday.value == "") {
 	            flg = 1;
 	        }
-	
+
 	        if (flg == 1) {
 	            alert('必須項目が入力されていません');
 	            return false;
