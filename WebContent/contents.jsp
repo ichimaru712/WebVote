@@ -57,7 +57,18 @@
             <main class="col-12 col-md-9 col-xl-9 bd-content">
             	<h1>開催中のコンテスト</h1>
                 <div class="row">
-                <% for(int i = 0; i < contents.size(); i++){ %>
+                <%
+                if(contents ==null){
+                	%>
+                	<div class="col-12">
+                		<article>
+                		コンテンツがなにもないのです。ドラえもんだいすき
+                		</article>
+                	</div>
+                	<%
+                }else{
+
+                for(int i = 0; i < contents.size(); i++){ %>
                 	<div class="col-12">
                 		<article>
                 			<form action="GetContents" method="post">
@@ -71,7 +82,7 @@
                 			</form>
                 		</article>
                 	</div>
-               	<% } %>
+               	<% }} %>
                 </div>
             </main>
         </div>
