@@ -36,13 +36,15 @@ public class NewUser extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
+
 		UserBean userbean =  (UserBean)session.getAttribute("newuser");
 		PasswordBean passwordbean = (PasswordBean)session.getAttribute("userpass");
+
 		UserDAO userdao = new UserDAO();
 		PasswordDAO passworddao = new PasswordDAO();
-
 		userdao.userInsert(userbean);
 		passworddao.passwordInsert(passwordbean);
+
 		session.removeAttribute("userpass");
 
 		request.getRequestDispatcher("mypage.jsp").forward(request, response);
@@ -61,20 +63,20 @@ public class NewUser extends HttpServlet {
 		String pass = request.getParameter("password1");
 		String userName = request.getParameter("username");
 		String sex = request.getParameter("sex");
+
+		System.out.println(request.getParameter("birthday"));
 		Date birthday = Date.valueOf(request.getParameter("birthday"));
 
 		UserBean userBean = new UserBean(userID,userName,null,null,sex,birthday);
 		UserBean check = new UserBean();
 		UserDAO userDAO = new UserDAO();
 		PasswordBean passwordbean = new PasswordBean(userID,pass);
-		System.out.println(userBean.getUserName());
 		check = userDAO.getUser(userID);
-		System.out.println(check.getUserName());
-		if(check == null){
+		if(check != null){
 			session.setAttribute("usercheck", -1);
 			request.getRequestDispatcher("newuser.jsp").forward(request, response);
 		}else{
-			session.setAttribute("loginUser", userBean);
+			session.setAttribute("newuser", userBean);
 			session.setAttribute("userpass", passwordbean);
 			request.getRequestDispatcher("newusercheck.jsp").forward(request, response);
 		}
