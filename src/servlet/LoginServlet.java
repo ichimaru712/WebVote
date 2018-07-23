@@ -78,6 +78,8 @@ public class LoginServlet extends HttpServlet {
 			if(userBean.getAuthority().equals("U")){
 				path = "contents.jsp";
 			}else{
+				ArrayList<UserBean> users = userDAO.getAllUser();
+				session.setAttribute("users", users);
 				path = "manager.jsp";
 			}
 		}else{
