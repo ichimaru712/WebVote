@@ -25,13 +25,15 @@ public class GetContentsPicture extends HttpServlet {
 		String id = request.getParameter("id");//商品のidを取得
 		ContentsDAO contentsdao = new ContentsDAO();//daoの用意
 		HttpSession session = request.getSession();
-		BufferedImage img;
+		BufferedImage img = contentsdao.getPicture(id);
+		/*
 		if(session.getAttribute("bi")!=null){
 			img = (BufferedImage)session.getAttribute("bi");
 			session.removeAttribute("bi");
 		}else{
-			img =  contentsdao.getPicture(id);
+			img = contentsdao.getPicture(id);
 		}
+		*/
 		
 		// 画像をクライアントに返却する
 		response.setContentType("image/jpeg");//画像の型指定

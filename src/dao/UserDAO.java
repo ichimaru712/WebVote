@@ -22,7 +22,7 @@ public class UserDAO extends DaoBase {
 		user.setAuthority(rs.getString(4));
 		user.setSex(rs.getString(5));
 		user.setBirthday(rs.getDate(6));
-
+		return user;
 		}catch(Exception e){
 
 		}finally {
@@ -32,7 +32,7 @@ public class UserDAO extends DaoBase {
 				System.out.println("error");
 			}
 		}
-		return user;
+		return null;
 		//ユーザが見つかれば該当ユーザ情報を、いなければnullをかえす
 	}
 
@@ -62,7 +62,7 @@ public class UserDAO extends DaoBase {
 			}
 		}
 	}
-	
+
 	//管理者からのユーザ情報変更
 	public void userUpdate(UserBean user){
 		//渡されたユーザ情報をユーザテーブルへ挿入
@@ -90,7 +90,7 @@ public class UserDAO extends DaoBase {
 			}
 		}
 	}
-	
+
 	//一般ユーザからのユーザ情報変更
 	public void userNameUpdate(String id,String name){
 		//渡されたユーザ情報をユーザテーブルへ挿入
@@ -103,7 +103,7 @@ public class UserDAO extends DaoBase {
 
 			stmt.setString(1, name);
 			stmt.setString(2, id);
-			
+
 
 			rsno = stmt.executeUpdate();
 
