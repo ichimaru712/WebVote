@@ -27,7 +27,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link" href="manager.jsp">管理者<span class="sr-only">(current)</span></a></li>
-				<li class="nav-item"><a class="nav-link" href="logout.jsp">ログアウト</a>
+				<li class="nav-item"><a class="nav-link" href="LoginServlet">ログアウト</a>
 				</li>
 			</ul>
 		</div>
@@ -129,6 +129,5 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 		crossorigin="anonymous"></script>
-
 </body>
 </html>

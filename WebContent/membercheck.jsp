@@ -23,7 +23,7 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link" href="contents.jsp">コンテスト一覧</a></li>
 				<li class="nav-item active"><a class="nav-link" href="mypage.jsp">マイページ<span class="sr-only">(current)</span></a></li>
-				<li class="nav-item"><a class="nav-link" href="logout.jsp">ログアウト</a>
+				<li class="nav-item"><a class="nav-link" href="LoginServlet">ログアウト</a>
 				</li>
 			</ul>
 		</div>

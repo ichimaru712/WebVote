@@ -24,7 +24,7 @@
                     <a class="nav-link" href="mypage.jsp">マイページ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.jsp">ログアウト</a>
+                    <a class="nav-link" href="LoginServlet">ログアウト</a>
                 </li>
             </ul>
         </div>
@@ -77,11 +77,11 @@
 	                <td>aaa</td>
 	                <td>yyyymmdd</td>
 	              </tr>
-	
+
 	            </table>
-	
+
 	            <button class="back" onclick="history.back()">戻る</button>
-            
+
             </main>
         </div>
     </div>

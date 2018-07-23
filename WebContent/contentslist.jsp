@@ -6,7 +6,7 @@
 <%
 	//コンテスト取得
 	ContentsBean contents = (ContentsBean)session.getAttribute("contentsBean");
-	
+
 	//コンテンツ詳細取得
 	ArrayList<ContentsdataBean> contentsdata = new ArrayList<ContentsdataBean>();
 	contentsdata = (ArrayList<ContentsdataBean>)session.getAttribute("contentsdata");
@@ -35,7 +35,7 @@
                     <a class="nav-link" href="mypage.jsp">マイページ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.jsp">ログアウト</a>
+                    <a class="nav-link" href="LoginServlet">ログアウト</a>
                 </li>
             </ul>
         </div>

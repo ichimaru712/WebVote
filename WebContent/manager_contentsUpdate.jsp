@@ -26,7 +26,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link" href="manager.jsp">管理者<span class="sr-only">(current)</span></a></li>
-				<li class="nav-item"><a class="nav-link" href="logout.jsp">ログアウト</a>
+				<li class="nav-item"><a class="nav-link" href="LoginServlet">ログアウト</a>
 				</li>
 			</ul>
 		</div>
@@ -69,7 +69,7 @@
 						<input type="text" class="form-control" value="<%= updatecontents.getContentsName() %>" id="contentsName" name="contentsName" placeholder="コンテンツ名">
 					</div>
 					<div class="form-group">
-						<label for="start">投票開始日</label><br> 
+						<label for="start">投票開始日</label><br>
 						<input type="datetime-local" class="form-control" value="<%= updatecontents.getStartDate() %>" name="starttime">
 					</div>
 					<div class="form-group">
@@ -107,7 +107,7 @@
 	        if (document.form.contentsId.value == "" || document.form.contentsName.value == "" || document.form.starttime.value == "" || document.form.endtime.value == "") {
 	            flg = 1;
 	        }
-	
+
 	        if (flg == 1) {
 	            alert('必須項目が入力されていません');
 	            return false;

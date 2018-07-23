@@ -72,8 +72,13 @@ public class LoginServlet extends HttpServlet {
 			ContentsDAO contentsDAO = new ContentsDAO();
 			ArrayList<ContentsBean> contents = new ArrayList<ContentsBean>();
 			contents = contentsDAO.getAllContents();
+			if(contents.size() == 0){
+				session.setAttribute("contents", null);
+			}else{
+				session.setAttribute("contents",contents);
+			}
 
-			session.setAttribute("contents",contents);
+
 
 			if(userBean.getAuthority().equals("U")){
 				path = "contents.jsp";
