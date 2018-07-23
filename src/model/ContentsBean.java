@@ -1,5 +1,6 @@
 package model;
 
+import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Date;
@@ -17,13 +18,13 @@ public class ContentsBean implements Serializable {
 	private Date contentsDate;
 	private Date startDate;
 	private Date endDate;
-	private Blob contentsPicture;
+	private InputStream contentsPicture;
 
 	public ContentsBean() {
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 	
-	public ContentsBean(String contentsID,String contentsName,Date contentsDate,Date startDate,Date endDate,Blob contentsPicture) {
+	public ContentsBean(String contentsID,String contentsName,Date contentsDate,Date startDate,Date endDate,InputStream contentsPicture) {
 		this.setContentsID(contentsID);
 		this.setContentsName(contentsName);
 		this.setContentsDate(contentsDate);
@@ -72,11 +73,11 @@ public class ContentsBean implements Serializable {
 		this.endDate = endDate;
 	}
 
-	public Blob getContentsPicture() {
+	public InputStream getContentsPicture() {
 		return contentsPicture;
 	}
 
-	public void setContentsPicture(Blob contentsPicture) {
+	public void setContentsPicture(InputStream contentsPicture) {
 		this.contentsPicture = contentsPicture;
 	}
 

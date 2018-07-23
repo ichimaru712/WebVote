@@ -33,11 +33,12 @@ public class NewUser extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 
-		UserBean userbean =  (UserBean)session.getAttribute("newuser");
+   UserBean userbean =  (UserBean)session.getAttribute("newuser");
 		PasswordBean passwordbean = (PasswordBean)session.getAttribute("userpass");
 
 		UserDAO userdao = new UserDAO();
@@ -53,6 +54,7 @@ public class NewUser extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
