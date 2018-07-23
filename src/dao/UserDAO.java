@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.ArrayList;
+
 import model.UserBean;
 
 public class UserDAO extends DaoBase {
@@ -34,6 +36,37 @@ public class UserDAO extends DaoBase {
 		}
 		return null;
 		//ユーザが見つかれば該当ユーザ情報を、いなければnullをかえす
+	}
+	
+	public ArrayList<UserBean> getAllUser() {
+		ArrayList<UserBean> users = new ArrayList<UserBean>();
+		try{
+		super.connection();
+
+		String sql ="select * from user";
+		stmt = con.prepareStatement(sql);
+		rs=stmt.executeQuery();
+		while(rs.next()) {
+		UserBean user = new UserBean();
+		user.setUserID(rs.getString(1));
+		user.setUserName(rs.getString(2));
+		user.setCreateDate(rs.getDate(3));
+		user.setAuthority(rs.getString(4));
+		user.setSex(rs.getString(5));
+		user.setBirthday(rs.getDate(6));
+		users.add(user);
+		}
+		}catch(Exception e){
+
+		}finally {
+			try{
+				super.DbClose();
+			}catch(Exception e){
+				System.out.println("error");
+			}
+		}
+		return users;
+		
 	}
 
 	public void userInsert(UserBean user){
