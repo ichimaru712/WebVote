@@ -56,13 +56,13 @@
                 <label for="exampleInputBirthday">性別</label><br>
                 <div class="radio-inline">
                     <label>
-                        <input type="radio" name="sex" id="optionsRadios1" value="1" checked>
+                        <input type="radio" name="sex" id="optionsRadios1" value="男" checked>
                         男
                     </label>
                 </div>
                 <div class="radio-inline">
                     <label>
-                        <input type="radio" name="sex" id="optionsRadios2" value="0">
+                        <input type="radio" name="sex" id="optionsRadios2" value="女">
                         女
                     </label>
                 </div>
