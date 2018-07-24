@@ -59,6 +59,7 @@ public class LoginServlet extends HttpServlet {
 		PasswordBean userpass = new PasswordBean();
 
 		userpass = passwordDAO.searchUser(id, password);
+		System.out.println(userpass.getPassword());
 
 		String path = "";
 		if(userpass != null){
