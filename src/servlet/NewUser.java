@@ -49,7 +49,7 @@ public class NewUser extends HttpServlet {
 
 		session.removeAttribute("userpass");
 
-		request.getRequestDispatcher("mypage.jsp").forward(request, response);
+		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 
 	/**
