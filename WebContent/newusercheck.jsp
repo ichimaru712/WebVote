@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import ="model.UserBean" import ="model.PasswordBean"%>
 <!-- 新規登録確認画面 -->
 <%
-UserBean user = (UserBean)session.getAttribute("loginUser");
+UserBean user = (UserBean)session.getAttribute("newuser");
 PasswordBean password = (PasswordBean)session.getAttribute("userpass");
 %>
 <!DOCTYPE html>
