@@ -37,7 +37,7 @@ public class ContentsDAO extends DaoBase {
 			}
 
 		}catch(Exception e){
-
+			return null;
 		}finally {
 			try{
 				super.DbClose();

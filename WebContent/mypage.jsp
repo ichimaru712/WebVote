@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="model.UserBean"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%
+	UserBean user = (UserBean)session.getAttribute("loginUser");
+
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,7 +59,9 @@
 						<a href="membercheck.jsp" class="list-group-item list-group-item-action">会員情報の確認</a>
 						<a href="membernamechange.jsp" class="list-group-item list-group-item-action">ユーザ名の変更</a>
 						<a href="memberpasschange.jsp" class="list-group-item list-group-item-action">パスワードの変更</a>
-						<a href="memberdelete.jsp" class="list-group-item list-group-item-action" onclick="return confirm('削除してもいいですか？')">退会</a>
+						<a href="<c:url value="MemberDelete">
+						<c:param name="userid"><%=user.getUserID() %></c:param>
+						</c:url>" class="list-group-item list-group-item-action" onclick="return confirm('削除してもいいですか？')">退会</a>
 					</div>
 				</div>
 			</div>

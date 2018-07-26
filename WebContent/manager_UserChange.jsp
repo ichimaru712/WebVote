@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.ArrayList,model.UserBean"%>
+	<%
+	int id = Integer.parseInt(request.getParameter("id"));
+	ArrayList<UserBean> users =(ArrayList<UserBean>)session.getAttribute("users");
+	UserBean user = users.get(id);
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,11 +75,11 @@
 						<tbody>
 							<tr>
 								<th scope="row">1</th>
-								<td>ichimaru</td>
-								<td>いちまる</td>
-								<td>男</td>
-								<td>YYYY:MM:DD</td>
-								<td>YYYY:MM:DD hh:mm:ss</td>
+								<td><%=user.getUserID() %></td>
+								<td><%=user.getUserName() %></td>
+								<td><%=user.getSex() %></td>
+								<td><%=user.getBirthday() %></td>
+								<td><%=user.getCreateDate() %></td>
 							</tr>
 						</tbody>
 					</table>
@@ -82,14 +87,14 @@
 				<form name="form" action="#" method="post" onsubmit="return check()">
 					<div class="form-group">
 						<label for="userId">ユーザID</label>
-						<input type="text" class="form-control" id="userId" name="userid" value="(ユーザID)" placeholder="(ユーザID)" readonly>
+						<input type="text" class="form-control" id="userId" name="userid" value="<%=user.getUserID() %>" placeholder="<%=user.getUserID() %>" readonly>
 					</div>
 					<div class="form-group">
 						<label for="userName">ユーザ名</label>
-						<input type="text" class="form-control" id="userName" name="username" value="(ユーザ名)" placeholder="ユーザ名">
+						<input type="text" class="form-control" id="userName" name="username" value="<%=user.getUserName() %>" placeholder="<%=user.getUserName() %>" required>
 					</div>
-					<label for="birthday">生年月日</label><br>
-					<input type="date" class="form-control" name="birthday" value="2017-06-01">
+					<label for="birthday">生年月日</label><br> 
+					<input type="date" class="form-control" name="birthday" value="<%=user.getBirthday() %>" required>
 	                <label for="sex">性別</label><br>
 	                <div class="radio-inline">
 	                    <label>
@@ -124,20 +129,5 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 		crossorigin="anonymous"></script>
-	<script>
-		function check(){
-			var flg = 0;
-	        if (document.form.userid.value == "" || document.form.username.value == "" || document.form.birthday.value == "") {
-	            flg = 1;
-	        }
-
-	        if (flg == 1) {
-	            alert('必須項目が入力されていません');
-	            return false;
-	        } else {
-	            return true;
-	        }
-		}
-	</script>
 </body>
 </html>

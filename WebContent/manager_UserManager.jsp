@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.ArrayList,model.UserBean"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%
+	ArrayList<UserBean> users = (ArrayList<UserBean>)session.getAttribute("users");
+	
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,39 +76,26 @@
 							</tr>
 						</thead>
 						<tbody>
+							<%
+							int count =1;
+							for(UserBean user:users){ %>
 							<tr>
-								<th scope="row">1</th>
-								<td>ichimaru</td>
-								<td>いちまる</td>
-								<td>男</td>
-								<td>YYYY:MM:DD</td>
-								<td>YYYY:MM:DD hh:mm:ss</td>
+								<th scope="row"><%= count %></th>
+								<td><%=user.getUserID() %></td>
+								<td><%=user.getUserName() %></td>
+								<td><%=user.getSex() %></td>
+								<td><%=user.getBirthday() %></td>
+								<td><%=user.getCreateDate() %></td>
+								<td><a href="<c:url value="/manager_UserChange.jsp">
+								<c:param name="id"><%= count-1  %></c:param>
+								</c:url>" class="btn btn-warning">情報変更</a></td>
 								<td><button type="button" class="btn btn-warning" onclick="location.href='manager_UserChange.jsp'">情報変更</button></td>
 								<td><button type="button" class="btn btn-warning" onclick="location.href='manager_UserPassChange.jsp'">パス変更</button></td>
 								<td><button type="button" class="btn btn-danger" onclick="return confirm('削除してもいいですか？')">削除</button></td>
 							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>ichimaru</td>
-								<td>いちまる</td>
-								<td>男</td>
-								<td>YYYY:MM:DD</td>
-								<td>YYYY:MM:DD hh:mm:ss</td>
-								<td><button type="button" class="btn btn-warning" onclick="location.href='manager_UserChange.jsp'">情報変更</button></td>
-								<td><button type="button" class="btn btn-warning" onclick="location.href='manager_UserPassChange.jsp'">パス変更</button></td>
-								<td><button type="button" class="btn btn-danger" onclick="return confirm('削除してもいいですか？')">削除</button></td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>ichimaru</td>
-								<td>いちまる</td>
-								<td>男</td>
-								<td>YYYY:MM:DD</td>
-								<td>YYYY:MM:DD hh:mm:ss</td>
-								<td><button type="button" class="btn btn-warning" onclick="location.href='manager_UserChange.jsp'">情報変更</button></td>
-								<td><button type="button" class="btn btn-warning" onclick="location.href='manager_UserPassChange.jsp'">パス変更</button></td>
-								<td><button type="button" class="btn btn-danger" onclick="return confirm('削除してもいいですか？')">削除</button></td>
-							</tr>
+							<%
+							count++;
+							} %>
 						</tbody>
 					</table>
 				</div>
