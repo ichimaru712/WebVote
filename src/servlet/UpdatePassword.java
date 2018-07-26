@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import dao.PasswordDAO;
 import model.PasswordBean;
+import model.UserBean;
+import sec.SafePassword;
 
 /**
  * Servlet implementation class UpdatePassword
@@ -42,13 +44,17 @@ public class UpdatePassword extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		HttpSession session = request.getSession();
+		SafePassword safepass = new SafePassword();
 
 		String pass = request.getParameter("newpass");
 
-		PasswordBean passwordbean = (PasswordBean)session.getAttribute("loginUser");
+		UserBean userbean = (UserBean)session.getAttribute("loginUser");
+		
+		String hashpass = safepass.getStretchedPassword(pass, userbean.getUserID());
+		
 
 		PasswordDAO passworddao = new PasswordDAO();
-		passworddao.passwordUpdate(passwordbean.getUserID(), pass);
+		passworddao.passwordUpdate(userbean.getUserID(), hashpass);
 
 		request.getRequestDispatcher("mypage.jsp").forward(request, response);
 
