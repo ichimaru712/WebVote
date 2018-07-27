@@ -84,6 +84,8 @@ public class InsertContents extends HttpServlet {
 		if (filePart != null) {
 			is = filePart.getInputStream();
 		}
+		ContentsDAO cdao = new ContentsDAO();
+		cdao.contentsInsert(id, name, start, end, is);
 		
 		ContentsBean contentsbean = new ContentsBean(id, name, null, start, end, is);
 		BufferedInputStream bis = new BufferedInputStream(is);
