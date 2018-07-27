@@ -1,5 +1,6 @@
 package servlet;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -23,11 +24,6 @@ public class InsertContentsDB extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		ContentsDAO contentsdao = new ContentsDAO();
-		
-		ContentsBean contentsbean = (ContentsBean)session.getAttribute("insertcontents");
-		contentsdao.contentsInsert(contentsbean.getContentsID(), contentsbean.getContentsName(), contentsbean.getStartDate(), contentsbean.getEndDate(), contentsbean.getContentsPicture());
 		
 		request.getRequestDispatcher("GetContents").forward(request, response);
 	}

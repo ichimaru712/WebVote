@@ -34,6 +34,19 @@ import model.ContentsdataBean;
 @MultipartConfig(maxFileSize=1048576)
 public class InsertContents extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO 自動生成されたメソッド・スタブ
+		HttpSession session = request.getSession();
+		ContentsBean contentsbean = (ContentsBean)session.getAttribute("insertcontents");
+		ContentsDAO cdao = new ContentsDAO();
+		cdao.contentsDelete(contentsbean.getContentsID());
+
+		request.getRequestDispatcher("manager_contentsAdd.jsp").forward(request, response);
+		
+		
+	}
     
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -88,8 +101,7 @@ public class InsertContents extends HttpServlet {
 		cdao.contentsInsert(id, name, start, end, is);
 		
 		ContentsBean contentsbean = new ContentsBean(id, name, null, start, end, is);
-		BufferedInputStream bis = new BufferedInputStream(is);
-		BufferedImage bi = ImageIO.read(bis);
+		BufferedImage bi = cdao.getPicture(id);
 		
 		session.setAttribute("insertcontents",contentsbean);
 		session.setAttribute("insertcontentspicture",bi);

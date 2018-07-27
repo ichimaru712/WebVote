@@ -2,6 +2,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	ArrayList<ContentsBean> contents = (ArrayList<ContentsBean>)session.getAttribute("contents");
 %>
@@ -64,7 +65,9 @@
 					<% if(contents != null){ %>
 						<% for(int i = 0; i < contents.size(); i++){ %>
 						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 textcenter">
-							<img class="img-responsive" src="${pageContext.request.contextPath}/GetContentsPicture?id=<%= contents.get(i).getContentsID() %>" width="300" height="200" alt="コンテンツ画像">
+							<img class="img-responsive" src="<c:url value="/GetContentsPicture">
+							<c:param name ="id"><%= contents.get(i).getContentsID() %></c:param>
+							</c:url>" width="300" height="200" alt="コンテンツ画像">
 						</div>
 						<div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12 listmargin">
 							<div class="list-group">
