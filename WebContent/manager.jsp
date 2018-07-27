@@ -61,7 +61,7 @@
 				</div>
 				<h1>コンテンツ確認</h1>
 				<div class="row">
-					<% if(contents.size() > 0){ %>
+					<% if(contents != null){ %>
 						<% for(int i = 0; i < contents.size(); i++){ %>
 						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 textcenter">
 							<img class="img-responsive" src="${pageContext.request.contextPath}/GetContentsPicture?id=<%= contents.get(i).getContentsID() %>" width="300" height="200" alt="コンテンツ画像">
