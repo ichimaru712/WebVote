@@ -63,7 +63,10 @@ public class InsertContents extends HttpServlet {
 			String str_start = request.getParameter("start");
 			String str_end = request.getParameter("end");
 			
-			start = Date.valueOf(str_start);
+
+			java.util.Date util_start = new java.util.Date();
+			java.util.Date util_end = new java.util.Date();
+
 			
 			end =Date.valueOf(str_end);
 			

@@ -62,8 +62,12 @@
 				</div>
 				<h1>コンテンツ確認</h1>
 				<div class="row">
-					<% if(contents != null){ %>
-						<% for(int i = 0; i < contents.size(); i++){ %>
+
+					<% if(contents == null){ %>
+						<p>コンテンツがありません</p>
+					<% } else {
+						for(int i = 0; i < contents.size(); i++){ %>
+
 						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 textcenter">
 							<img class="img-responsive" src="<c:url value="/GetContentsPicture">
 							<c:param name ="id"><%= contents.get(i).getContentsID() %></c:param>
@@ -77,10 +81,8 @@
 								<a href="manager_contentsDelete.jsp" class="list-group-item list-group-item-action" onclick="return confirm('削除してもいいですか？')">削除</a>
 							</div>
 						</div>
-						<% } %>
-					<% } else { %>
-						<p>コンテンツがありません</p>
-					<% } %>
+						<%}
+					} %>
 				</div>
 			</div>
 		</div>
