@@ -2,7 +2,10 @@ package dao;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -122,6 +125,13 @@ public class ContentsDAO extends DaoBase {
 	public void contentsInsert(String id,String name,Date start,Date end,InputStream picture){
 
 		try{
+//			FileChannel channel = picture.getChannel();
+//            ByteBuffer buffer = ByteBuffer.allocate((int) channel.size());
+//            channel.read(buffer);
+//            buffer.clear();
+//            byte[] bytes = new byte[buffer.capacity()];
+//            buffer.get(bytes);
+//            channel.close();
 			//super.DbOpen();
 			super.connection();
 			String sql  ="insert into contents(contentsID,contentsName,startDate,endDate,contentsPicture) values(?,?,?,?,?)";
@@ -137,6 +147,7 @@ public class ContentsDAO extends DaoBase {
 			rsno = stmt.executeUpdate();
 
 		}catch(Exception e){
+			System.out.println(e);
 
 		}finally {
 			try{
@@ -229,11 +240,12 @@ public class ContentsDAO extends DaoBase {
 		   stmt.setString(1, id);
 		   rs = stmt.executeQuery();
 		   rs.next();
-		   InputStream is = rs.getBinaryStream("picture");
+		   InputStream is = rs.getBinaryStream("contentsPicture");
 		   BufferedInputStream bis = new BufferedInputStream(is);
 		   return ImageIO.read(bis);
 
 		}catch(Exception e){
+			System.out.println(e);
 
 		}finally {
 		   try{
