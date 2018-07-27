@@ -55,7 +55,7 @@
 					</div>
 				</div>
 				<h1>コンテンツ詳細登録</h1>
-				<form name="check" action="${pageContext.request.contextPath}/InsertContentsdata" method="post" onsubmit="return check()">
+				<form name="check" action="${pageContext.request.contextPath}/InsertContentsdata" method="post" onsubmit="return check()" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="contentsdataId">コンテンツ詳細ID</label>
 						<input type="text" class="form-control" id="contentsdataId" value="入力不可" placeholder="コンテンツID" readonly>

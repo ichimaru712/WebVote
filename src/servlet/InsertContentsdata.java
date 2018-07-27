@@ -1,17 +1,15 @@
 package servlet;
 
-import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,19 +20,15 @@ import javax.servlet.http.Part;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import dao.ContentsdataDAO;
-import model.ContentsBean;
 import model.ContentsdataBean;
 
-/**
- * Servlet implementation class InsertContentsdata
- */
 @WebServlet("/InsertContentsdata")
+@MultipartConfig(maxFileSize=1048576)
 public class InsertContentsdata extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
     public InsertContentsdata() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	@Override
@@ -57,14 +51,13 @@ public class InsertContentsdata extends HttpServlet {
 		String d_id = RandomStringUtils.randomAlphabetic(10)+RandomStringUtils.randomNumeric(10);//ランダム生成
 		String name = request.getParameter("name");
 		String sex = request.getParameter("sex");
-		String intro = request.getParameter("intro");
+		String intro = request.getParameter("introduction");
+		String birth = request.getParameter("birthday");
 		
 		Date birthday = null;
 		try {
 			// String → java.util.Date → java.sql.Date
 			SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd");
-			
-			String birth = request.getParameter("birthday");
 			
 			java.util.Date util_day = new java.util.Date();
 			
@@ -91,12 +84,11 @@ public class InsertContentsdata extends HttpServlet {
 			is = filePart.getInputStream();
 		}
 		
-		BufferedInputStream bis = new BufferedInputStream(is);
-		
-		
+		ContentsdataDAO contentsdataDAO = new ContentsdataDAO();
+		contentsdataDAO.contentsdataInsert(c_id, d_id, name, is, intro, sex, birthday);
 		
 		//フォワード画面入力予定
-		request.getRequestDispatcher(".jsp").forward(request, response);
+		request.getRequestDispatcher("GetAllContentsdata?id="+ c_id).forward(request, response);
 	}
 
 }
