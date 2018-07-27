@@ -72,7 +72,7 @@
                 	<div class="col-12">
                 		<article>
                 			<form action="GetContents" method="post">
-                				<input type="hidden" name="id" value=<%= contents.get(i).getContentsID() %>>
+                				<input type="hidden" name="id" value=<%= i %>>
                 				<img src="img/no_image.png" class="img-fluid" alt="test" width="100%" height="200">
                 				<div class="sample-box-3">
                                     <p class="textcenter">開催期間: <%= contents.get(i).getStartDate() %> 〜 <%= contents.get(i).getEndDate() %></p>
