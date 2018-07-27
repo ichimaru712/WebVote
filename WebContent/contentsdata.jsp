@@ -75,8 +75,8 @@
                 </table>
                 <button onclick="history.back()" class="btn btn-secondary">戻る</button>
                 <% if(check == 0){ %>
-                <form action="AddVote" method="get">
-                	<button type="button" class="btn btn-info" onclick="return confirm('<%= contentsdataBean.getContentsdataName() %>に投票してもいいですか？')">投票する</button>
+                <form action="AddVote" method="post">
+                	<button type="submit" class="btn btn-info" onclick="return confirm('<%= contentsdataBean.getContentsdataName() %>に投票してもいいですか？')">投票する</button>
             	</form>
             	<% }else{ %>
             		<button type="button" class="btn btn-lg btn-info" disabled>投票済み</button>
