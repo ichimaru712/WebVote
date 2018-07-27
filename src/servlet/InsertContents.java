@@ -4,10 +4,11 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.Date;
+
 import java.text.DateFormat;
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -23,10 +24,8 @@ import javax.servlet.http.Part;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
-import dao.ContentsDAO;
-import dao.ContentsdataDAO;
 import model.ContentsBean;
-import model.ContentsdataBean;
+
 
 @WebServlet("/InsertContents")
 @MultipartConfig(maxFileSize=1048576)
