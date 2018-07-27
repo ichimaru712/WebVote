@@ -55,37 +55,37 @@
 					</div>
 				</div>
 				<h1>コンテンツ詳細登録</h1>
-				<form name="check" action="#" method="post" onsubmit="return check()">
+				<form name="check" action="${pageContext.request.contextPath}/InsertContentsdata" method="post" onsubmit="return check()">
 					<div class="form-group">
 						<label for="contentsdataId">コンテンツ詳細ID</label>
 						<input type="text" class="form-control" id="contentsdataId" value="入力不可" placeholder="コンテンツID" readonly>
 					</div>
 					<div class="form-group">
 						<label for="contentsdataName">コンテンツ詳細名（出場者名）</label>
-						<input type="text" class="form-control" id="contentsName" placeholder="コンテンツ詳細名">
+						<input type="text" class="form-control" id="contentsName" name="name" placeholder="コンテンツ詳細名">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputBirthday">性別</label><br>
 						<div class="radio-inline">
-							<label><input type="radio" name="sex" id="optionsRadios1" value="1" checked> 男</label>
+							<label><input type="radio" name="sex" id="optionsRadios1" value="男" checked> 男</label>
 						</div>
 						<div class="radio-inline">
-							<label><input type="radio" name="sex" id="optionsRadios2" value="0"> 女</label>
+							<label><input type="radio" name="sex" id="optionsRadios2" value="女"> 女</label>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="birthday">生年月日</label><br>
-						<input type="date" class="form-control" name="birthday">
+						<input type="date" class="form-control" name="birthday" value="1990-01-01">
 					</div>
 					<div class="form-group">
     					<label for="textarea">紹介文(500文字以内)</label>
     					<textarea class="form-control" id="textarea" name="introduction" rows="3"></textarea>
   					</div>
 					<div class="form-group">
- 					    <label for="contents">コンテンツ詳細画像 (画像サイズ：800px × 500px)</label>
-					    <input type="file" class="form-control-file" id="contentsimage">
+ 					    <label for="contents">コンテンツ詳細画像 (画像サイズ：800px × 500px .jpegもしくは.jpgのみ)</label>
+					    <input type="file" class="form-control-file" name="picture" id="contentsimage" accept=".jpg,.jpeg">
   					</div>
-  					<button type="submit" onclick="location.href='manager_contentsDataAddCheck.jsp'" class="btn btn-secondary">確認</button>
+  					<button type="submit" class="btn btn-secondary">確認</button>
 				</form>
 			</div>
 		</div>

@@ -47,14 +47,10 @@ public class InsertContents extends HttpServlet {
 		Date end = null;
 		try{
 			// String → java.util.Date → java.sql.Date
-			SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd' 'hh:mm");
+			SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd");
 			
 			String str_start = request.getParameter("start");
 			String str_end = request.getParameter("end");
-			
-			// input type="date"の値から余計な文字列を削除
-			str_start = str_start.replace("T", " ");
-			str_end = str_end.replace("T", " ");
 			
 			java.util.Date util_start = new java.util.Date();
 			java.util.Date util_end = new java.util.Date();

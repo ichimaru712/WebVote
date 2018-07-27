@@ -69,42 +69,46 @@
 						</a>
 					</div>
 				</div>
-				<div class="table-responsive">
-					<table class="table">
-	                   	<tr>
-							<th></th>
-	                      	<th>コンテンツ詳細ID</th>
-	                       	<th>コンテンツ詳細名</th>
-	                       	<th>性別</th>
-	                       	<th>生年月日</th>
-	                       	<th>概要</th>
-	                       	<th>画像</th>
-	                       	<th></th>
-	                       	<th></th>
-	                   	</tr>
-	                   	<% for(int i = 0; i < contentsdata.size(); i++){ %>
-	                   	<tr>
-	                   		<td><%= (i + 1) %></td>
-	                   		<td><%= contentsdata.get(i).getContentsdataID() %></td>
-	                   		<td><%= contentsdata.get(i).getContentsdataName() %></td>
-	                   		<td><%= contentsdata.get(i).getSex() %></td>
-	                   		<td><%= contentsdata.get(i).getBirthday() %></td>
-	                   		<td>
-		                       	<div class="dropdown">
-									<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">概要</button>
-									<div class="dropdown-menu p-4 text-muted"
-										style="max-width: 200px;">
-										<p><%= contentsdata.get(i).getIntroduction() %></p>
+				<% if(contentsdata == null){ %>
+					<p>参加者がいません</p>
+	            <% } else { %>
+	            	<div class="table-responsive">
+						<table class="table">
+		                   	<tr>
+								<th></th>
+		                      	<th>コンテンツ詳細ID</th>
+		                       	<th>コンテンツ詳細名</th>
+		                       	<th>性別</th>
+		                       	<th>生年月日</th>
+		                       	<th>概要</th>
+		                       	<th>画像</th>
+		                       	<th></th>
+		                       	<th></th>
+		                   	</tr>
+		                   	<% for(int i = 0; i < contentsdata.size(); i++){ %>
+		                   	<tr>
+		                   		<td><%= (i + 1) %></td>
+		                   		<td><%= contentsdata.get(i).getContentsdataID() %></td>
+		                   		<td><%= contentsdata.get(i).getContentsdataName() %></td>
+		                   		<td><%= contentsdata.get(i).getSex() %></td>
+		                   		<td><%= contentsdata.get(i).getBirthday() %></td>
+		                   		<td>
+			                       	<div class="dropdown">
+										<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">概要</button>
+										<div class="dropdown-menu p-4 text-muted"
+											style="max-width: 200px;">
+											<p><%= contentsdata.get(i).getIntroduction() %></p>
+										</div>
 									</div>
-								</div>
-							</td>
-	                   		<td><img class="img-responsive" src="${pageContext.request.contextPath}/GetContentsdataPicture?id=<%= contentsdata.get(i).getContentsID() %>&id2=<%= contentsdata.get(i).getContentsdataID() %>" height="65" width="100" alt="<%= contentsdata.get(i).getContentsdataName() %>"></td>
-	                   		<td><button type="button" class="btn btn-warning" onclick="location.href='GetContentsdata?c_id=<%= contentsdata.get(i).getContentsID() %>&d_id=<%= contentsdata.get(i).getContentsdataID() %>&flg='change''">変更</button></td>
-	                       	<td><button type="button" class="btn btn-danger" onclick="location.href='GetContentsdata?c_id=<%= contentsdata.get(i).getContentsID() %>&d_id=<%= contentsdata.get(i).getContentsdataID() %>&flg='delete''">削除</button></td>
-	                   	</tr>
-	                   	<% } %>
-	                </table>
-	            </div>
+								</td>
+		                   		<td><img class="img-responsive" src="${pageContext.request.contextPath}/GetContentsdataPicture?id=<%= contentsdata.get(i).getContentsID() %>&id2=<%= contentsdata.get(i).getContentsdataID() %>" height="65" width="100" alt="<%= contentsdata.get(i).getContentsdataName() %>"></td>
+		                   		<td><button type="button" class="btn btn-warning" onclick="location.href='GetContentsdata?c_id=<%= contentsdata.get(i).getContentsID() %>&d_id=<%= contentsdata.get(i).getContentsdataID() %>&flg='change''">変更</button></td>
+		                       	<td><button type="button" class="btn btn-danger" onclick="location.href='GetContentsdata?c_id=<%= contentsdata.get(i).getContentsID() %>&d_id=<%= contentsdata.get(i).getContentsdataID() %>&flg='delete''">削除</button></td>
+		                   	</tr>
+		                   	<% } %>
+		                </table>
+		            </div>
+	            <% } %>
 			</div>
 		</div>
 	</div>

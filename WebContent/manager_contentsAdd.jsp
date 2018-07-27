@@ -67,14 +67,14 @@
 					<div class="form-group">
 
 						<label for="start">投票開始日</label><br> 
-						<input type="datetime-local" class="form-control" name="start" value="1990-01-01T00:00:00">
+						<input type="date" class="form-control" name="start" value="2018-01-01">
 					</div>
 					<div class="form-group">
 						<label for="end">投票終了日</label><br>
-						<input type="datetime-local" class="form-control" name="end" value="1990-01-01T00:00:00">
+						<input type="date" class="form-control" name="end" value="2018-01-01">
 					</div>
 					<div class="form-group">
- 					    <label for="contents">コンテンツ画像</label>
+ 					    <label for="contents">コンテンツ画像(.jpegもしくは.jpgのみ)</label>
 					    <input type="file" class="form-control-file" name="picture" id="contentsimage" accept=".jpg,.jpeg">
   					</div>
   					<button type="submit" class="btn btn-secondary">確認</button>
