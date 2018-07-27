@@ -44,7 +44,7 @@ public class GetContents extends HttpServlet {
 			ArrayList<ContentsBean> arraycontents = new ArrayList<ContentsBean>();
 			arraycontents = (ArrayList<ContentsBean>)session.getAttribute("contents");
 			
-			int i = 0;
+			/**int i = 0;
 			try {
 				//hiddenの値が改変されてないか
 				i = Integer.parseInt(request.getParameter("id"));
@@ -57,7 +57,8 @@ public class GetContents extends HttpServlet {
 				//hiddenの値改変
 				System.out.println("値が改変されました");
 				request.getRequestDispatcher("contents.jsp").forward(request, response);
-			}
+			}**/
+			int i = Integer.parseInt(request.getParameter("id"));
 			ContentsBean contentsBean = contentsDAO.getContents(arraycontents.get(i).getContentsID());
 			
 			//コンテンツ詳細取得

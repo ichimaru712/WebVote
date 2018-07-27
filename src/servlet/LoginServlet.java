@@ -16,6 +16,7 @@ import dao.UserDAO;
 import model.ContentsBean;
 import model.PasswordBean;
 import model.UserBean;
+import sec.SafePassword;
 
 /**
  * Servlet implementation class LoginServlet
@@ -51,14 +52,17 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
+		
+		PasswordDAO passwordDAO = new PasswordDAO();
+		PasswordBean userpass = new PasswordBean();
+		SafePassword safepass = new SafePassword();
 
 		String id = request.getParameter("userid");
 		String password = request.getParameter("password");
+		
+		String hashpass = safepass.getStretchedPassword(password, id);
 
-		PasswordDAO passwordDAO = new PasswordDAO();
-		PasswordBean userpass = new PasswordBean();
-
-		userpass = passwordDAO.searchUser(id, password);
+		userpass = passwordDAO.searchUser(id, hashpass);
 
 		String path = "";
 		if(userpass != null){

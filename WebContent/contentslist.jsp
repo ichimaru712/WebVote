@@ -89,8 +89,8 @@
                 	<% for(int i = 0; i < contentsdata.size(); i++){ %>
                 	<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                         <section>
-                        	<form action="GetContentsdata" method="post">
-                        		<input type="hidden" name="id" value=<%= contentsdata.get(i).getContentsID() %>>
+                        	<form action="GetContentsData" method="post">
+                        		<input type="hidden" name="id" value=<%= contentsdata.get(i).getContentsdataID() %>>
 	                            <div class="card" style="width: 14.5rem;">
 	                                <img class="card-img-top" src="img/no_image.png" alt="一丸栄樹" width="200" height="200">
 	                                <div class="card-body">

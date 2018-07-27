@@ -57,7 +57,7 @@ public class ContentsdataDAO extends DaoBase{
 				//super.DbOpen();
 				super.connection();
 				
-				String sql = "select count(*) as check from contentsdata where contentsID = ? and contentsdataID = ?";
+				String sql = "select count(*) as 'check' from contentsdata where contentsID = ? and contentsdataID = ?";
 				stmt = con.prepareStatement(sql);
 				stmt.setString(1, contentsid);
 				stmt.setString(2, contentsdataid);
@@ -68,6 +68,7 @@ public class ContentsdataDAO extends DaoBase{
 				check = rs.getInt("check");
 				
 			}catch(Exception e){
+				System.out.println(e);
 							
 			}finally {
 				try{

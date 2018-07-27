@@ -52,7 +52,7 @@
 			<main class="col-12 col-md-9 col-xl-9 bd-content">
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-		                <div class="alert alert-warning textcenter" role="alert">開催中</div>
+		                <div class="alert alert-warning textcenter" role="alert">登録完了</div>
 		                <div class="image">
 		                	<img src="${pageContext.request.contextPath}/InsertContentsPicture" alt="プレビュー画像" width="100%">
 		                </div>

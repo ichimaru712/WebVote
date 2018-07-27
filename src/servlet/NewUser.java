@@ -14,6 +14,7 @@ import dao.PasswordDAO;
 import dao.UserDAO;
 import model.PasswordBean;
 import model.UserBean;
+import sec.SafePassword;
 
 /**
  * Servlet implementation class NewUser
@@ -48,7 +49,7 @@ public class NewUser extends HttpServlet {
 
 		session.removeAttribute("userpass");
 
-		request.getRequestDispatcher("mypage.jsp").forward(request, response);
+		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 
 	/**
@@ -60,6 +61,7 @@ public class NewUser extends HttpServlet {
 		//doGet(request, response);
 
 		HttpSession session = request.getSession();
+		SafePassword safepass = new SafePassword();
 
 		String userID = request.getParameter("userid");
 		String pass = request.getParameter("password1");
@@ -72,7 +74,8 @@ public class NewUser extends HttpServlet {
 		UserBean userBean = new UserBean(userID,userName,null,null,sex,birthday);
 		UserBean check = new UserBean();
 		UserDAO userDAO = new UserDAO();
-		PasswordBean passwordbean = new PasswordBean(userID,pass);
+		String hash = safepass.getStretchedPassword(pass, userID);
+		PasswordBean passwordbean = new PasswordBean(userID,hash);
 		check = userDAO.getUser(userID);
 		if(check != null){
 			session.setAttribute("usercheck", -1);
