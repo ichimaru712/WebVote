@@ -53,22 +53,39 @@ public class InsertContents extends HttpServlet {
 		
 		String id = RandomStringUtils.randomAlphabetic(10)+RandomStringUtils.randomNumeric(10);//ランダム生成
 		String name = request.getParameter("name");
+		String str_start = request.getParameter("start");
+		String str_end = request.getParameter("end");
 		
 		Date start = null;
 		Date end = null;
 		try{
 			// String → java.util.Date → java.sql.Date
-			SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd");
-			
-			String str_start = request.getParameter("start");
-			String str_end = request.getParameter("end");
-			
+						SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd");
+						
 
-			java.util.Date util_start = new java.util.Date();
-			java.util.Date util_end = new java.util.Date();
-
-			
-			end =Date.valueOf(str_end);
+						
+						// input type="date"の値から余計な文字列を削除
+						str_start = str_start.replace("T", " ");
+						str_end = str_end.replace("T", " ");
+						
+						java.util.Date util_start = new java.util.Date();
+						java.util.Date util_end = new java.util.Date();
+						
+						// String → java.util.Date
+						util_start = sFormat.parse(str_start);
+						util_end = sFormat.parse(str_end);
+						
+						// java.util.Date → java.sql.Date
+						Calendar calendar = Calendar.getInstance();
+						calendar.setTime(util_start);
+						calendar.set(Calendar.HOUR_OF_DAY, 0);
+						calendar.set(Calendar.MINUTE, 0);
+						calendar.set(Calendar.SECOND, 0);
+						calendar.set(Calendar.MILLISECOND, 0);
+						start = new java.sql.Date(calendar.getTimeInMillis());
+						
+						calendar.setTime(util_end);
+						end = new java.sql.Date(calendar.getTimeInMillis());
 			
 		}catch (Exception e) {
 			System.out.println(e);
