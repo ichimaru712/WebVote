@@ -58,7 +58,7 @@
             	<h1>開催中のコンテスト</h1>
                 <div class="row">
                 <%
-                if(contents ==null){
+                if(contents == null){
                 	%>
                 	<div class="col-12">
                 		<article>

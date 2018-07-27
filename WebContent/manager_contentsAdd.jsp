@@ -55,7 +55,7 @@
 					</div>
 				</div>
 				<h1>コンテンツ登録</h1>
-				<form name="form" action="${pageContext.request.contextPath}/InsertContents" method="post" onsubmit="return check()" enctype="multipart/form-data">
+				<form name="form" action="${pageContext.request.contextPath}/InsertContents" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="contentsId">コンテンツID</label>
 						<input type="text" class="form-control" id="contentsId" placeholder="コンテンツID" readonly>
@@ -65,13 +65,12 @@
 						<input type="text" class="form-control" name="name" id="contentsName" placeholder="コンテンツ名">
 					</div>
 					<div class="form-group">
-
 						<label for="start">投票開始日</label><br> 
-						<input type="datetime-local" class="form-control" name="start" value="1990-01-01T00:00:00">
+						<input type="date" class="form-control" name="start" value="1990-01-01">
 					</div>
 					<div class="form-group">
 						<label for="end">投票終了日</label><br>
-						<input type="datetime-local" class="form-control" name="end" value="1990-01-01T00:00:00">
+						<input type="date" class="form-control" name="end" value="1990-01-01">
 					</div>
 					<div class="form-group">
  					    <label for="contents">コンテンツ画像</label>

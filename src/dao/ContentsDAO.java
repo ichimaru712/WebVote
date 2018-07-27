@@ -137,6 +137,7 @@ public class ContentsDAO extends DaoBase {
 			rsno = stmt.executeUpdate();
 
 		}catch(Exception e){
+			System.out.println(e);
 
 		}finally {
 			try{
