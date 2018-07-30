@@ -50,6 +50,32 @@ public class ContentsDAO extends DaoBase {
 		}
 		return arraycontents;
 	}
+	
+	// 履歴テーブルから取得したcontentsIDで、コンテンツテーブルからcontentsNameを取得
+	public String getContentsName(String id){
+		String contentsID = "";
+		try {
+			super.connection();
+			
+			String sql = "select contentsName from contents where contentsID = ?";
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, id);
+			rs = stmt.executeQuery();
+			rs.next();
+			
+			contentsID = rs.getString("contentsName");
+			
+		}catch(Exception e){
+			System.out.println(e);
+		}finally {
+			try{
+				super.DbClose();
+			}catch(Exception e){
+				System.out.println("error");
+			}
+		}
+		return contentsID;
+	}
 
 	//現在開催中のコンテンツを取得
 	public ArrayList<ContentsBean> getInSessionContents(Date nowtime){

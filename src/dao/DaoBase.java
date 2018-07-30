@@ -14,8 +14,11 @@ import javax.sql.DataSource;
  */
 public class DaoBase {
 	Connection con=null;	//DBMSへの接続や切断を行う
+	Connection con2=null;
 	PreparedStatement stmt = null;	//SQLの送信を行う
+	PreparedStatement stmt2 = null;
 	ResultSet rs=null;		//DBMSからの検索結果を受け取る
+	ResultSet rs2=null;
 	int rsno=0;				//DBMSからの処理件数を受け取る
 
 	//データソース

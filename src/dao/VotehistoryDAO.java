@@ -1,15 +1,20 @@
 package dao;
 
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import com.sun.org.apache.xpath.internal.operations.And;
+
+import model.MypageVotehistoryBean;
 import model.VotehistoryBean;
+import servlet.GetVotehistory;
 
 public class VotehistoryDAO extends DaoBase{
 	
 	//ユーザーごとの履歴取得
 	public ArrayList<VotehistoryBean> getUserVotehistory(String id){
-		ArrayList<VotehistoryBean> arrayvotehistory = new ArrayList<VotehistoryBean>();
+		ArrayList<VotehistoryBean> votearray = new ArrayList<VotehistoryBean>();
 		try{
 			//super.DbOpen();
 			super.connection();
@@ -20,19 +25,18 @@ public class VotehistoryDAO extends DaoBase{
 			rs=stmt.executeQuery();
 			
 			while(rs.next()){
-				VotehistoryBean votehistorybean = new VotehistoryBean();
+				VotehistoryBean votehistoryBean = new VotehistoryBean();
 				
-				votehistorybean.setVotehistoryID(rs.getString("votehistoryID"));
-				votehistorybean.setUserID(rs.getString("userID"));
-				votehistorybean.setContentsID(rs.getString("contentsID"));
-				votehistorybean.setContentsdataID(rs.getString("contentsdataID"));
-				votehistorybean.setVotedate(rs.getDate("votedate"));
-				
-				arrayvotehistory.add(votehistorybean);
+				votehistoryBean.setVotehistoryID(rs.getInt("votehistoryID"));
+				votehistoryBean.setContentsID(rs.getString("contentsID"));
+				votehistoryBean.setContentsdataID(rs.getString("contentsdataID"));
+				votehistoryBean.setVotedate(rs.getDate("voteDate"));
+
+				votearray.add(votehistoryBean);
 			}
 			
 		}catch(Exception e){
-			
+			System.out.println(e);
 		}finally {
 			try{
 				super.DbClose();
@@ -40,7 +44,7 @@ public class VotehistoryDAO extends DaoBase{
 				System.out.println("error");
 			}
 		}
-		return arrayvotehistory;
+		return votearray;
 	}
 	
 	//ユーザが対象コンテンツに投票済みか確認
