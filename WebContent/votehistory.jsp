@@ -68,20 +68,20 @@
 
 	            <table class="table table-bordered">
 	              <tr>
+	              	<th></th>
 	                <th class="bg-light">コンテスト名</th>
 	                <th class="bg-light">投票内容</th>
 	                <th class="bg-light">日付</th>
 	              </tr>
 	              <tr>
-	                <td>一丸コンテスト</td>
-	                <td>aaa</td>
-	                <td>yyyymmdd</td>
+	              	<td>1</td>
+	                <td>テスト</td>
+	                <td>テスト</td>
+	                <td>2018-07-30</td>
 	              </tr>
 
 	            </table>
-
 	            <button class="back" onclick="history.back()">戻る</button>
-
             </main>
         </div>
     </div>

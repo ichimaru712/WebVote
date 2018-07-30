@@ -222,17 +222,19 @@ public class ContentsdataDAO extends DaoBase{
 		public BufferedImage getPicture(String contentsid,String contentsdataid){
 			try{
 			   super.connection();
-			   String sql  ="select * from contents where contentsID = ? and contentsdataID = ?";
+			   String sql  ="select * from contentsdata where contentsID = ? and contentsdataID = ?";
 			   stmt = con.prepareStatement(sql); 
 			   stmt.setString(1, contentsid);
-			   stmt.setString(1, contentsdataid);
+			   stmt.setString(2, contentsdataid);
 			   rs = stmt.executeQuery();
 			   rs.next();
-			   InputStream is = rs.getBinaryStream("picture");
+			   InputStream is = rs.getBinaryStream("contentsdataPicture");
 			   BufferedInputStream bis = new BufferedInputStream(is);
-			   return ImageIO.read(bis);
 
+			   return ImageIO.read(bis);
+			   
 			}catch(Exception e){
+				System.out.println(e);
 
 			}finally {
 			   try{
@@ -240,8 +242,8 @@ public class ContentsdataDAO extends DaoBase{
 			   }catch(Exception e){
 			    System.out.println("error");
 			   }
-			} 
-			  return null;
+			}
+			return null;
 		}
-
+		
 }

@@ -24,6 +24,7 @@ import javax.servlet.http.Part;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import dao.ContentsDAO;
 import model.ContentsBean;
 
 

@@ -53,7 +53,7 @@
             <!-- コンテンツ一覧 -->
             <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
                 <h1>出場者のプロフィール</h1>
-                <img src="img/no_image.png" class="img-fluid" alt="プロフィール画像" width="800px" height="500px">
+                <img src="img/nezumi.jpeg" class="img-fluid" alt="プロフィール画像" width="800px" height="500px">
 
                 <table class="table">
                     <tr>
