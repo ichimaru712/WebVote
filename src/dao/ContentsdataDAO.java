@@ -50,6 +50,35 @@ public class ContentsdataDAO extends DaoBase{
 			return arraycontentsdata;
 		}
 		
+
+		// 履歴テーブルから取得したcontentsdataIDで、コンテンツテーブルからcontentsdataNameを取得
+		public String getContentsdataName(String cid,String did){
+			String contentsdataID = "";
+			try {
+				super.connection();
+				
+				String sql = "select contentsdataName from contentsdata where contentsID = ? and contentsdataID = ?";
+				stmt = con.prepareStatement(sql);
+				stmt.setString(1, cid);
+				stmt.setString(2, did);
+				rs = stmt.executeQuery();
+				rs.next();
+				
+				contentsdataID = rs.getString("contentsdataName");
+				
+			}catch(Exception e){
+				System.out.println(e);
+			}finally {
+				try{
+					super.DbClose();
+				}catch(Exception e){
+					System.out.println("error");
+				}
+			}
+			return contentsdataID;
+		}
+			
+		
 		//同じidがあるか
 		public int duplicationContentdIdCheck(String contentsid,String contentsdataid){
 			int check = 0;

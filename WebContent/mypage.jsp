@@ -55,7 +55,7 @@
 				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 					<h1>マイページ</h1>
 					<div class="list-group">
-						<a href="votehistory.jsp" class="list-group-item list-group-item-action">投票履歴</a>
+						<a href="GetVotehistory" class="list-group-item list-group-item-action">投票履歴</a>
 						<a href="membercheck.jsp" class="list-group-item list-group-item-action">会員情報の確認</a>
 						<a href="membernamechange.jsp" class="list-group-item list-group-item-action">ユーザ名の変更</a>
 						<a href="memberpasschange.jsp" class="list-group-item list-group-item-action">パスワードの変更</a>
