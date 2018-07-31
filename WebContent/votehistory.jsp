@@ -1,5 +1,10 @@
+<%@page import="model.MypageVotehistoryBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<MypageVotehistoryBean> votearray = (ArrayList<MypageVotehistoryBean>)session.getAttribute("votearray");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +36,7 @@
     </nav>
 
     <div class="container">
-        <h1><img class="img-fluid" src="img/contents_test.jpeg" width="100%" alt="コンテンツ一覧"></h1>
+        <img class="img-fluid" src="img/contents_test.jpeg" width="100%" alt="コンテンツ一覧">
         <div class="row">
             <!-- 固定サイドメニュー -->
             <div class="col-12 col-md-3 col-xl-4 bd-sidebar">
@@ -65,23 +70,26 @@
 
             <!-- コンテンツ一覧 -->
             <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
-
+				<h1>投票履歴</h1>
 	            <table class="table table-bordered">
 	              <tr>
+	              	<th></th>
 	                <th class="bg-light">コンテスト名</th>
 	                <th class="bg-light">投票内容</th>
 	                <th class="bg-light">日付</th>
 	              </tr>
-	              <tr>
-	                <td>一丸コンテスト</td>
-	                <td>aaa</td>
-	                <td>yyyymmdd</td>
-	              </tr>
-
+	              <% if(votearray != null){ %>
+		              <% for(int i = 0; i < votearray.size(); i++){ %>
+		              <tr>
+		              	<td><%= i + 1 %></td>
+		                <td><%= votearray.get(i).getContentsname() %></td>
+		                <td><%= votearray.get(i).getContentsdatename() %></td>
+		                <td><%= votearray.get(i).getVotedate() %></td>
+		              </tr>
+					  <% } %>
+				  <% } %>
 	            </table>
-
 	            <button class="back" onclick="history.back()">戻る</button>
-
             </main>
         </div>
     </div>

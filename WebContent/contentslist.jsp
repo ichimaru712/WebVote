@@ -92,7 +92,7 @@
                         	<form action="GetContentsData" method="post">
                         		<input type="hidden" name="id" value=<%= contentsdata.get(i).getContentsdataID() %>>
 	                            <div class="card" style="width: 14.5rem;">
-	                                <img class="card-img-top" src="img/no_image.png" alt="一丸栄樹" width="200" height="200">
+	                                <img class="card-img-top" src="img/nezumi.jpeg" alt="test" width="200" height="200">
 	                                <div class="card-body">
 	                                    <h5 class="card-title"><%= contentsdata.get(i).getContentsdataName() %></h5>
 	                                    <button type="submit" class="btn btn-secondary">もっと見る</button>

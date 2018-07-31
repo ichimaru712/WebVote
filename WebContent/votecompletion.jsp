@@ -50,7 +50,7 @@
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<h1>投票完了</h1>
 						<div class="textcenter">
-							<img class="image" src="img/no_image.png" alt="コンテンツ画像">
+							<img class="image" src="img/nezumi.jpeg" alt="コンテンツ画像">
 							<p class="h2">投票しました</p>
 							<button href="contents.jsp" class="btn btn-secondary">一覧へ戻る</button>
 						</div>

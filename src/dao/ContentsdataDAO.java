@@ -50,6 +50,35 @@ public class ContentsdataDAO extends DaoBase{
 			return arraycontentsdata;
 		}
 		
+
+		// 履歴テーブルから取得したcontentsdataIDで、コンテンツテーブルからcontentsdataNameを取得
+		public String getContentsdataName(String cid,String did){
+			String contentsdataID = "";
+			try {
+				super.connection();
+				
+				String sql = "select contentsdataName from contentsdata where contentsID = ? and contentsdataID = ?";
+				stmt = con.prepareStatement(sql);
+				stmt.setString(1, cid);
+				stmt.setString(2, did);
+				rs = stmt.executeQuery();
+				rs.next();
+				
+				contentsdataID = rs.getString("contentsdataName");
+				
+			}catch(Exception e){
+				System.out.println(e);
+			}finally {
+				try{
+					super.DbClose();
+				}catch(Exception e){
+					System.out.println("error");
+				}
+			}
+			return contentsdataID;
+		}
+			
+		
 		//同じidがあるか
 		public int duplicationContentdIdCheck(String contentsid,String contentsdataid){
 			int check = 0;
@@ -222,17 +251,19 @@ public class ContentsdataDAO extends DaoBase{
 		public BufferedImage getPicture(String contentsid,String contentsdataid){
 			try{
 			   super.connection();
-			   String sql  ="select * from contents where contentsID = ? and contentsdataID = ?";
+			   String sql  ="select * from contentsdata where contentsID = ? and contentsdataID = ?";
 			   stmt = con.prepareStatement(sql); 
 			   stmt.setString(1, contentsid);
-			   stmt.setString(1, contentsdataid);
+			   stmt.setString(2, contentsdataid);
 			   rs = stmt.executeQuery();
 			   rs.next();
-			   InputStream is = rs.getBinaryStream("picture");
+			   InputStream is = rs.getBinaryStream("contentsdataPicture");
 			   BufferedInputStream bis = new BufferedInputStream(is);
-			   return ImageIO.read(bis);
 
+			   return ImageIO.read(bis);
+			   
 			}catch(Exception e){
+				System.out.println(e);
 
 			}finally {
 			   try{
@@ -240,8 +271,8 @@ public class ContentsdataDAO extends DaoBase{
 			   }catch(Exception e){
 			    System.out.println("error");
 			   }
-			} 
-			  return null;
+			}
+			return null;
 		}
-
+		
 }

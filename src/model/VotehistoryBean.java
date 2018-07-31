@@ -10,7 +10,7 @@ public class VotehistoryBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String votehistoryID;
+	private int votehistoryID;
 	private String userID;
 	private String contentsID;
 	private String contentsdataID;
@@ -20,7 +20,7 @@ public class VotehistoryBean implements Serializable {
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 	
-	public VotehistoryBean(String votehistoryID,String userID,String contentsID,String contentsdataID,Date votedate) {
+	public VotehistoryBean(int votehistoryID,String userID,String contentsID,String contentsdataID,Date votedate) {
 		this.votehistoryID = votehistoryID;
 		this.userID = userID;
 		this.contentsID = contentsID;
@@ -28,12 +28,12 @@ public class VotehistoryBean implements Serializable {
 		this.votedate = votedate;
 	}
 
-	public String getVotehistoryID() {
+	public int getVotehistoryID() {
 		return votehistoryID;
 	}
 
-	public void setVotehistoryID(String votehistory) {
-		this.votehistoryID = votehistory;
+	public void setVotehistoryID(int i) {
+		this.votehistoryID = i;
 	}
 
 	public String getUserID() {
