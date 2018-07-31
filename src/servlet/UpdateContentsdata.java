@@ -47,7 +47,7 @@ public class UpdateContentsdata extends HttpServlet {
 		
 		session.setAttribute("updatecontentsdata", updatecontentsdata);
 		
-		request.getRequestDispatcher("*.jsp").forward(request, response);
+		request.getRequestDispatcher("GetAllContentsdata").forward(request, response);
 		
 	}
 
@@ -73,7 +73,7 @@ public class UpdateContentsdata extends HttpServlet {
 		}
 		contentsdatadao.contentsdataUpdate(contentsdatabean.getContentsID(), contentsdatabean.getContentsdataID(), name, is, intro, sex, birth);
 		
-		request.getRequestDispatcher("GetContentsdata").forward(request, response);
+		request.getRequestDispatcher("GetContentsData").forward(request, response);
 	}
 
 }

@@ -102,8 +102,8 @@
 									</div>
 								</td>
 		                   		<td><img class="img-responsive" src="${pageContext.request.contextPath}/GetContentsdataPicture?id=<%= contentsdata.get(i).getContentsID() %>&id2=<%= contentsdata.get(i).getContentsdataID() %>" height="65" width="100" alt="<%= contentsdata.get(i).getContentsdataName() %>"></td>
-		                   		<td><button type="button" class="btn btn-warning" onclick="location.href='GetContentsdata?c_id=<%= contentsdata.get(i).getContentsID() %>&d_id=<%= contentsdata.get(i).getContentsdataID() %>&flg='change''">変更</button></td>
-		                       	<td><button type="button" class="btn btn-danger" onclick="location.href='GetContentsdata?c_id=<%= contentsdata.get(i).getContentsID() %>&d_id=<%= contentsdata.get(i).getContentsdataID() %>&flg='delete''">削除</button></td>
+		                   		<td><a href="GetContentsData?c_id=<%= contentsdata.get(i).getContentsID() %>&d_id=<%= contentsdata.get(i).getContentsdataID() %>&flg=change" class="btn btn-warning" >変更</a></td>
+		                       	<td><a href="DeleteContentsdata?c_id=<%= contentsdata.get(i).getContentsID() %>&d_id=<%= contentsdata.get(i).getContentsdataID() %>&flg=delete" class="btn btn-danger" onclick="return confirm('削除してもいいですか？')">削除</a></td>
 		                   	</tr>
 		                   	<% } %>
 		                </table>

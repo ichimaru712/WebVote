@@ -78,7 +78,7 @@
 								<a href="UpdateContents?id=<%= contents.get(i).getContentsID() %>" class="list-group-item list-group-item-action">情報更新</a>
 								<a href="GetAllContentsdata?id=<%= contents.get(i).getContentsID() %>" class="list-group-item list-group-item-action">参加者</a>
 								<a href="manager_contentsStatus.jsp" class="list-group-item list-group-item-action">状況確認</a>
-								<a href="manager_contentsDelete.jsp" class="list-group-item list-group-item-action" onclick="return confirm('削除してもいいですか？')">削除</a>
+								<a href="DeleteContents?c_id=<%= contents.get(i).getContentsID() %>" class="list-group-item list-group-item-action" onclick="return confirm('削除してもいいですか？')">削除</a>
 							</div>
 						</div>
 						<%}

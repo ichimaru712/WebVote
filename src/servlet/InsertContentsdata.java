@@ -46,7 +46,7 @@ public class InsertContentsdata extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-				
+		
 		String c_id = (String) session.getAttribute("contentsID");
 		String d_id = RandomStringUtils.randomAlphabetic(10)+RandomStringUtils.randomNumeric(10);//ランダム生成
 		String name = request.getParameter("name");
