@@ -59,7 +59,7 @@
 					</div>
 				</div>
 				<h1>コンテンツ確認</h1>
-				<form name="form" action="UpdateContents" method="post" onsubmit="return check()">
+				<form name="form" action="UpdateContents" method="post" onsubmit="return check()" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="contentsId">コンテンツID</label>
 						<input type="text" class="form-control" id="contentsId" name="contentsId" value="<%= updatecontents.getContentsID() %>" placeholder="コンテンツID" readonly>
@@ -70,11 +70,11 @@
 					</div>
 					<div class="form-group">
 						<label for="start">投票開始日</label><br>
-						<input type="datetime-local" class="form-control" value="<%= updatecontents.getStartDate() %>" name="starttime">
+						<input type="datetime-local" class="form-control" value="<%= updatecontents.getStartDate() %>" name="start">
 					</div>
 					<div class="form-group">
 						<label for="end">投票終了日</label><br>
-						<input type="datetime-local" class="form-control" value="<%= updatecontents.getEndDate() %>" name="endtime">
+						<input type="datetime-local" class="form-control" value="<%= updatecontents.getEndDate() %>" name="end">
 					</div>
 					<div class="form-group">
  					    <label for="contents">コンテンツ画像</label>
