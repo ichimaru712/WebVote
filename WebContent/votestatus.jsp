@@ -1,6 +1,7 @@
 <%@page import="model.ContentsBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	ContentsBean contentsBean = (ContentsBean)session.getAttribute("contentsBean");
 	int allvote = (int)session.getAttribute("allvote");
@@ -56,7 +57,11 @@
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<h1><%= contentsBean.getContentsName() %>の投票状況</h1>
-						<img src="img/no_image.png" width="100%" alt="コンテンツ画像">
+						
+						<img class="img-responsive" src="<c:url value="/GetContentsPicture">
+						<c:param name ="id"><%= contentsBean.getContentsID() %></c:param>
+						</c:url>" width="100%" alt="コンテンツ画像">
+						
 						<table class="table">
 	                        <tr>
 	                            <th>投票数</th>

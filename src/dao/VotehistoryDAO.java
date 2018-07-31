@@ -48,17 +48,16 @@ public class VotehistoryDAO extends DaoBase{
 	}
 	
 	//ユーザが対象コンテンツに投票済みか確認
-	public int getContentsVoteCheck(String userID,String contentsID,String contentsdataID){
+	public int getContentsVoteCheck(String userID,String contentsID){
 		int check = 0;
 		try{
 			//super.DbOpen();
 			super.connection();
 			
-			String sql = "select count(*) from votehistory where userID = ? and contentsID = ? and contentsdataID = ?";
+			String sql = "select count(*) from votehistory where userID = ? and contentsID = ?";
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, userID);
 			stmt.setString(2, contentsID);
-			stmt.setString(3, contentsdataID);
 			rs = stmt.executeQuery();
 			rs.next();
 			
@@ -93,7 +92,7 @@ public class VotehistoryDAO extends DaoBase{
 			count = rs.getInt(1);
 			
 		}catch(Exception e){
-			
+			System.out.println(e);
 		}finally {
 			try{
 				super.DbClose();
@@ -111,7 +110,7 @@ public class VotehistoryDAO extends DaoBase{
 			//super.DbOpen();
 			super.connection();
 			
-			String sql ="select count(*) from votehistory where contentsID = ? and sex = '男'";
+			String sql ="select count(*) from votehistory v,user u where v.contentsID = ? and u.sex = '男' and u.authority = 'U'";
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, contentsid);
 			rs=stmt.executeQuery();
@@ -120,7 +119,7 @@ public class VotehistoryDAO extends DaoBase{
 			count = rs.getInt(1);
 			
 		}catch(Exception e){
-			
+			System.out.println(e);
 		}finally {
 			try{
 				super.DbClose();
@@ -138,7 +137,7 @@ public class VotehistoryDAO extends DaoBase{
 				//super.DbOpen();
 				super.connection();
 				
-				String sql ="select count(*) from votehistory where contentsID = ? and sex = '女'";
+				String sql ="select count(*) from votehistory v,user u where v.contentsID = ? and u.sex = '女' and u.authority = 'U'";
 				stmt = con.prepareStatement(sql);
 				stmt.setString(1, contentsid);
 				rs=stmt.executeQuery();
@@ -147,7 +146,7 @@ public class VotehistoryDAO extends DaoBase{
 				count = rs.getInt(1);
 				
 			}catch(Exception e){
-				
+				System.out.println(e);
 			}finally {
 				try{
 					super.DbClose();

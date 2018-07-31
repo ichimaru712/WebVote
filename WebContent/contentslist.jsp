@@ -3,6 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	//コンテスト取得
 	ContentsBean contents = (ContentsBean)session.getAttribute("contentsBean");
@@ -65,7 +66,9 @@
                     <% } else { %>
                     	<div class="alert alert-dark textcenter" role="alert">終了</div>
                     <% } %>
-                        <div class="image"><img src="img/contents_test.jpeg" alt="見出し" width="100%"></div>
+                        <img class="img-responsive" src="<c:url value="/GetContentsPicture">
+						<c:param name ="id"><%= contents.getContentsID() %></c:param>
+						</c:url>" width="100%" alt="コンテンツ画像">
                         <h2><%= contents.getContentsName() %></h2>
                         <table class="table">
                             <tr>
@@ -77,11 +80,11 @@
                                 <td><%= contentsdata.size() %></td>
                             </tr>
                         </table>
-                        <form action="VoteStatus" method="get">
+						<a href="${pageContext.request.contextPath}/VoteStatus?id=<%= contents.getContentsID() %>">
 							<div class="alert alert-info textcenter" role="alert">
 								投票状況
 							</div>
-						</form>
+						</a>
 					</div>
                 </div>
                 <h3>出場者一覧</h3>

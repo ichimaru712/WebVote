@@ -49,7 +49,7 @@ public class GetVotehistory extends HttpServlet {
 			
 			MypageVotehistoryBean myp = new MypageVotehistoryBean();
 			
-			myp.setContentsname(contentsdataName);
+			myp.setContentsname(contentsName);
 			myp.setContentsdatename(contentsdataName);
 			myp.setVotedate(date);
 			
