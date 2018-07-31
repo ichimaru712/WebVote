@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="model.ContentsdataBean"%>
+<%
+	ContentsdataBean contentsdata = (ContentsdataBean)session.getAttribute("contentsdata");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +58,7 @@
 					</div>
 				</div>
 				<h1>コンテンツ確認</h1>
-				<form name="check" action="#" method="post" onsubmit="return check()">
+				<form name="check" action="UpdateContentsdata" method="post" onsubmit="return check()">
 					<div class="form-group">
 						<label for="contentsdataId">コンテンツ詳細ID</label>
 						<input type="text" class="form-control" id="contentsdataId" value="（コンテンツ詳細ID）" placeholder="コンテンツID" readonly>

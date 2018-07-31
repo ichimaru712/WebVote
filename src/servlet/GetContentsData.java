@@ -54,7 +54,8 @@ public class GetContentsData extends HttpServlet {
 		}else if(flg.equals("delete")){
 			path = "manager_contentsDataDelete.jsp";
 		}else if (flg == null || flg == "") {
-			path = "*.jsp";
+			System.out.println(flg);
+			path = ".jsp";
 		}
 		request.getRequestDispatcher(path).forward(request, response);
 
