@@ -24,21 +24,19 @@ public class VoteStatus extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		ContentsBean contentsBean = (ContentsBean)session.getAttribute("contentsBean");
 		VotehistoryDAO votehistoryDAO = new VotehistoryDAO();
 		
+		String id = request.getParameter("id");
+		
 		//対象コンテンツの総投票数取得
-		int allvote = votehistoryDAO.getContentsVotehistory(contentsBean.getContentsID());
+		int allvote = votehistoryDAO.getContentsVotehistory(id);
 		//性別ごとの投票数取得
-		int man = votehistoryDAO.getContentsManVotehistory(contentsBean.getContentsID());
-		int woman = votehistoryDAO.getContentsWomanVotehistory(contentsBean.getContentsID());
+		int man = votehistoryDAO.getContentsManVotehistory(id);
+		int woman = votehistoryDAO.getContentsWomanVotehistory(id);
 		
 		session.setAttribute("allvote", allvote);
 		session.setAttribute("man", man);

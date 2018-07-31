@@ -33,6 +33,7 @@ public class GetContentsData extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -63,6 +64,7 @@ public class GetContentsData extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
@@ -88,7 +90,7 @@ public class GetContentsData extends HttpServlet {
 			//ユーザが対象コンテンツに投票済みか確認
 			VotehistoryDAO votehistoryDAO = new VotehistoryDAO();
 			UserBean userBean = (UserBean)session.getAttribute("loginUser");
-			check = votehistoryDAO.getContentsVoteCheck(userBean.getUserID(), contentsdataBean.getContentsID(), contentsdataBean.getContentsdataID());
+			check = votehistoryDAO.getContentsVoteCheck(userBean.getUserID(), contentsdataBean.getContentsID());
 
 			session.setAttribute("voteCheck", check);
 

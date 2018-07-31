@@ -26,7 +26,7 @@ public class AddVote extends HttpServlet {
 		VotehistoryDAO votehistoryDAO = new VotehistoryDAO();
 		
 		//ユーザが対象コンテンツに投票済みか確認 *二重チェック
-		int check = votehistoryDAO.getContentsVoteCheck(userBean.getUserID(), contentsdataBean.getContentsID(), contentsdataBean.getContentsdataID());
+		int check = votehistoryDAO.getContentsVoteCheck(userBean.getUserID(), contentsdataBean.getContentsID());
 		
 		String path = "";
 		if(check == 0){
