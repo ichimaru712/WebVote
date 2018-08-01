@@ -1,4 +1,5 @@
 <%@page import="model.ContentsBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -7,6 +8,13 @@
 	int allvote = (int)session.getAttribute("allvote");
 	int man = (int)session.getAttribute("man");
 	int woman = (int)session.getAttribute("woman");
+	
+	//コンテスト取得
+		ArrayList<ContentsBean> activeContents = new ArrayList<ContentsBean>();
+		activeContents = (ArrayList<ContentsBean>)session.getAttribute("activeContents");
+		
+		ArrayList<ContentsBean> noactiveContents = new ArrayList<ContentsBean>();
+		noactiveContents = (ArrayList<ContentsBean>)session.getAttribute("noactiveContents");
 %>
 <!DOCTYPE html>
 <html>
@@ -41,16 +49,26 @@
 		<div class="image"><img class="img-fluid" src="img/contents_test.jpeg" width="100%" alt="コンテンツ一覧"></div>
 		<div class="row">
 			<!-- 固定サイドメニュー -->
-			<div class="col-12 col-md-3 col-xl-3 bd-sidebar">
-				<div class="list-group">
-					<a href="#" class="list-group-item list-group-item-action list-group-item-warning">開催中</a>
-					<a href="#" class="list-group-item list-group-item-action">いちまるコンテスト</a>
-					<a href="#" class="list-group-item list-group-item-action">いちまるコンテスト</a>
+            <div class="col-12 col-md-3 col-xl-3 bd-sidebar">
+                <div class="list-group">
+					<a href="#" class="list-group-item list-group-item-action list-group-item-warning">開催前・開催中</a>
+					<% if(activeContents != null){ %>
+						<% for(int i = 0; i < activeContents.size(); i++){ %>
+							<a href="#" class="list-group-item list-group-item-action"><%= activeContents.get(i).getContentsName() %></a>
+						<% }
+					   } else { %>
+						<a href="#" class="list-group-item list-group-item-action">開催中のコンテストはありません</a>
+					<% } %>
 					<a href="#" class="list-group-item list-group-item-action list-group-item-secondary">終了</a>
-					<a href="#" class="list-group-item list-group-item-action">いちまるコンテスト</a>
-					<a href="#" class="list-group-item list-group-item-action">いちまるコンテスト</a>
+					<% if(noactiveContents != null){
+						for(int i = 0; i < noactiveContents.size(); i++){ %>
+							<a href="#" class="list-group-item list-group-item-action"><%= noactiveContents.get(i).getContentsName() %></a>
+						<% }
+					   } else { %>
+						<a href="#" class="list-group-item list-group-item-action">終了したコンテストはありません</a>
+					<% } %>
 				</div>
-			</div>
+            </div>
 
 			<!-- コンテンツ -->
 			<main class="col-12 col-md-9 col-xl-9 bd-content">

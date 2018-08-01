@@ -1,9 +1,16 @@
 <%@page import="model.MypageVotehistoryBean"%>
+<%@page import="model.ContentsBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	ArrayList<MypageVotehistoryBean> votearray = (ArrayList<MypageVotehistoryBean>)session.getAttribute("votearray");
+//コンテスト取得
+	ArrayList<ContentsBean> activeContents = new ArrayList<ContentsBean>();
+	activeContents = (ArrayList<ContentsBean>)session.getAttribute("activeContents");
+	
+	ArrayList<ContentsBean> noactiveContents = new ArrayList<ContentsBean>();
+	noactiveContents = (ArrayList<ContentsBean>)session.getAttribute("noactiveContents");
 %>
 <!DOCTYPE html>
 <html>
@@ -36,36 +43,28 @@
     </nav>
 
     <div class="container">
-        <img class="img-fluid" src="img/contents_test.jpeg" width="100%" alt="コンテンツ一覧">
+        <div class="image"><img class="img-fluid" src="img/contents_test.jpeg" width="100%" alt="コンテンツ一覧"></div>
         <div class="row">
             <!-- 固定サイドメニュー -->
-            <div class="col-12 col-md-3 col-xl-4 bd-sidebar">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link disabled">開催中</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">　いちまるコンテスト</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">　いちまる</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">　いちまる</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">終了</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">　いちまる</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">　いちまる</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">　いちまる</a>
-                    </li>
-                </ul>
+            <div class="col-12 col-md-3 col-xl-3 bd-sidebar">
+                <div class="list-group">
+					<a href="#" class="list-group-item list-group-item-action list-group-item-warning">開催前・開催中</a>
+					<% if(activeContents != null){ %>
+						<% for(int i = 0; i < activeContents.size(); i++){ %>
+							<a href="#" class="list-group-item list-group-item-action"><%= activeContents.get(i).getContentsName() %></a>
+						<% }
+					   } else { %>
+						<a href="#" class="list-group-item list-group-item-action">開催中のコンテストはありません</a>
+					<% } %>
+					<a href="#" class="list-group-item list-group-item-action list-group-item-secondary">終了</a>
+					<% if(noactiveContents != null){
+						for(int i = 0; i < noactiveContents.size(); i++){ %>
+							<a href="#" class="list-group-item list-group-item-action"><%= noactiveContents.get(i).getContentsName() %></a>
+						<% }
+					   } else { %>
+						<a href="#" class="list-group-item list-group-item-action">終了したコンテストはありません</a>
+					<% } %>
+				</div>
             </div>
 
             <!-- コンテンツ一覧 -->
