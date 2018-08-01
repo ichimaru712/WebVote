@@ -5,8 +5,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	//コンテスト取得
-	ArrayList<ContentsBean> contents = new ArrayList<ContentsBean>();
-	contents = (ArrayList<ContentsBean>)session.getAttribute("contents");
+	ArrayList<ContentsBean> activeContents = new ArrayList<ContentsBean>();
+	activeContents = (ArrayList<ContentsBean>)session.getAttribute("activeContents");
+	
+	ArrayList<ContentsBean> noactiveContents = new ArrayList<ContentsBean>();
+	noactiveContents = (ArrayList<ContentsBean>)session.getAttribute("noactiveContents");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -45,12 +49,22 @@
             <!-- 固定サイドメニュー -->
             <div class="col-12 col-md-3 col-xl-3 bd-sidebar">
                 <div class="list-group">
-					<a href="#" class="list-group-item list-group-item-action list-group-item-warning">開催中</a>
-					<a href="#" class="list-group-item list-group-item-action">いちまるコンテスト</a>
-					<a href="#" class="list-group-item list-group-item-action">いちまるコンテスト</a>
+					<a href="#" class="list-group-item list-group-item-action list-group-item-warning">開催前・開催中</a>
+					<% if(activeContents != null){ %>
+						<% for(int i = 0; i < activeContents.size(); i++){ %>
+							<a href="#" class="list-group-item list-group-item-action"><%= activeContents.get(i).getContentsName() %></a>
+						<% }
+					   } else { %>
+						<a href="#" class="list-group-item list-group-item-action">開催中のコンテストはありません</a>
+					<% } %>
 					<a href="#" class="list-group-item list-group-item-action list-group-item-secondary">終了</a>
-					<a href="#" class="list-group-item list-group-item-action">いちまるコンテスト</a>
-					<a href="#" class="list-group-item list-group-item-action">いちまるコンテスト</a>
+					<% if(noactiveContents != null){
+						for(int i = 0; i < noactiveContents.size(); i++){ %>
+							<a href="#" class="list-group-item list-group-item-action"><%= noactiveContents.get(i).getContentsName() %></a>
+						<% }
+					   } else { %>
+						<a href="#" class="list-group-item list-group-item-action">終了したコンテストはありません</a>
+					<% } %>
 				</div>
             </div>
 
@@ -59,30 +73,30 @@
             	<h1>開催中のコンテスト</h1>
                 <div class="row">
                 <%
-                if(contents == null){
+                if(activeContents == null){
                 	%>
                 	<div class="col-12">
                 		<article>
-                		コンテンツがなにもないのです。ドラえもんだいすき
+                			開催中のコンテストはありません
                 		</article>
                 	</div>
                 	<%
                 }else{
 
-                for(int i = 0; i < contents.size(); i++){ %>
+                for(int i = 0; i < activeContents.size(); i++){ %>
                 	<div class="col-12">
                 		<article>
                 			<form action="GetContents" method="post">
                 				<input type="hidden" name="id" value=<%= i %>>
 
                 				<img class="img-responsive" src="<c:url value="/GetContentsPicture">
-								<c:param name ="id"><%= contents.get(i).getContentsID() %></c:param>
+								<c:param name ="id"><%= activeContents.get(i).getContentsID() %></c:param>
 								</c:url>" width="100%" height="300" alt="コンテンツ画像">
                 				<!-- <img src="img/no_image.png" class="img-fluid" alt="test" width="100%" height="200"> -->
                         
                 				<div class="sample-box-3">
-                                    <p class="textcenter">開催期間: <%= contents.get(i).getStartDate() %> 〜 <%= contents.get(i).getEndDate() %></p>
-                                    <p class="textcenter title"><%= contents.get(i).getContentsName() %></p>
+                                    <p class="textcenter">開催期間: <%= activeContents.get(i).getStartDate() %> 〜 <%= activeContents.get(i).getEndDate() %></p>
+                                    <p class="textcenter title"><%= activeContents.get(i).getContentsName() %></p>
                                     <button type="submit" class="btn btn-secondary">詳しく見る</button>
                                 </div>
                 			</form>

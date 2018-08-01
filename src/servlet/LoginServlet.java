@@ -1,7 +1,9 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,35 +20,21 @@ import model.PasswordBean;
 import model.UserBean;
 import sec.SafePassword;
 
-/**
- * Servlet implementation class LoginServlet
- */
+
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public LoginServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		session.invalidate();
 		request.getRequestDispatcher("login.jsp").forward(request,response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -72,18 +60,33 @@ public class LoginServlet extends HttpServlet {
 			userBean = userDAO.getUser(id);
 			session.setAttribute("loginUser",userBean);
 
-			//開催中コンテストを取得
+			//現在日を取得
+			java.util.Date util_date = new java.util.Date();
+			
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(util_date);
+			
+			Date date = new Date(calendar.getTimeInMillis());
+			
 			ContentsDAO contentsDAO = new ContentsDAO();
-			ArrayList<ContentsBean> contents = new ArrayList<ContentsBean>();
-			contents = contentsDAO.getAllContents();
-			if(contents.size() == 0){
-				session.setAttribute("contents", null);
-			}else{
-				session.setAttribute("contents",contents);
+			
+			//開催中・開催前
+			ArrayList<ContentsBean> activeContents = contentsDAO.getActiveContents(date);
+			//開催終了
+			ArrayList<ContentsBean> noactiveContents = contentsDAO.getNoActiveContents(date);
+			
+			if(activeContents.size() == 0){
+				session.setAttribute("activeContents", null);
+			} else {
+				session.setAttribute("activeContents", activeContents);
 			}
-
-
-
+			
+			if (noactiveContents.size() == 0) {
+				session.setAttribute("noactiveContents", null);
+			} else {
+				session.setAttribute("noactiveContents", noactiveContents);
+			}
+			
 			if(userBean.getAuthority().equals("U")){
 				path = "contents.jsp";
 			}else{
@@ -96,5 +99,4 @@ public class LoginServlet extends HttpServlet {
 		}
 		request.getRequestDispatcher(path).forward(request, response);
 	}
-
 }

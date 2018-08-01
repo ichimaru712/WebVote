@@ -62,8 +62,6 @@ public class InsertContents extends HttpServlet {
 			// String → java.util.Date → java.sql.Date
 			SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd");
 			
-
-			
 			// input type="date"の値から余計な文字列を削除
 			str_start = str_start.replace("T", " ");
 			str_end = str_end.replace("T", " ");
