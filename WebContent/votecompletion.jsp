@@ -52,7 +52,7 @@
 						<div class="textcenter">
 							<img class="image" src="img/nezumi.jpeg" alt="コンテンツ画像">
 							<p class="h2">投票しました</p>
-							<button href="contents.jsp" class="btn btn-secondary">一覧へ戻る</button>
+							<a href="contents.jsp" class="btn btn-secondary">一覧へ戻る</a>
 						</div>
 					</div>
 				</div>
