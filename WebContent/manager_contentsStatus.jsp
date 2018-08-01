@@ -32,27 +32,27 @@
 		<div class="row">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 				<div class="row textcenter">
-					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
 						<a href="manager.jsp">
 							<div class="alert alert-success" role="alert">
 								コンテンツ確認
 							</div>
 						</a>
 					</div>
-					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
 						<a href="manager_contentsAdd.jsp">
 							<div class="alert alert-primary" role="alert">
 								コンテンツ登録
 							</div>
 						</a>
 					</div>
-					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+					<!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
 						<a href="manager_UserManager.jsp">
 							<div class="alert alert-warning" role="alert">
 								ユーザ管理
 							</div>
 						</a>
-					</div>
+					</div> -->
 				</div>
 				<h1>（コンテンツ名）の投票状況</h1>
 				<table class="table">

@@ -35,58 +35,59 @@
 		<div class="row">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 				<div class="row textcenter">
-					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
 						<a href="manager.jsp">
 							<div class="alert alert-success" role="alert">
 								コンテンツ確認
 							</div>
 						</a>
 					</div>
-					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
 						<a href="manager_contentsAdd.jsp">
 							<div class="alert alert-primary" role="alert">
 								コンテンツ登録
 							</div>
 						</a>
 					</div>
-					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+					<!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
 						<a href="manager_UserManager.jsp">
 							<div class="alert alert-warning" role="alert">
 								ユーザ管理
 							</div>
 						</a>
-					</div>
+					</div> -->
 				</div>
 				<h1>コンテンツ確認</h1>
-				<form name="check" action="UpdateContentsdata" method="post" onsubmit="return check()">
+				<form name="check" action="UpdateContentsdata" method="post" onsubmit="return check()" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="contentsdataId">コンテンツ詳細ID</label>
-						<input type="text" class="form-control" id="contentsdataId" value="（コンテンツ詳細ID）" placeholder="コンテンツID" readonly>
+						<input type="text" class="form-control" id="contentsdataId" value="<%= contentsdata.getContentsdataID() %>" placeholder="コンテンツID" readonly>
 					</div>
 					<div class="form-group">
 						<label for="contentsdataName">コンテンツ詳細名（出場者名）</label>
-						<input type="text" class="form-control" id="contentsName" placeholder="コンテンツ詳細名">
+						<input type="text" class="form-control" id="contentsName" name="name" value="<%= contentsdata.getContentsdataName() %>" placeholder="コンテンツ詳細名">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputBirthday">性別</label><br>
 						<div class="radio-inline">
-							<label><input type="radio" name="sex" id="optionsRadios1" value="1" checked> 男</label>
+						
+							<label><input type="radio" name="sex" id="optionsRadios1" value="男" <%if(contentsdata.getSex().equals("男")){ %>checked<%} %>> 男</label>
 						</div>
 						<div class="radio-inline">
-							<label><input type="radio" name="sex" id="optionsRadios2" value="0"> 女</label>
+							<label><input type="radio" name="sex" id="optionsRadios2" value="女" <%if(contentsdata.getSex().equals("女")){ %>checked<%} %>> 女</label>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="birthday">生年月日</label><br>
-						<input type="date" class="form-control" name="birthday">
+						<input type="date" class="form-control" name="birthday" value="<%= contentsdata.getBirthday() %>">
 					</div>
 					<div class="form-group">
     					<label for="textarea">紹介文(500文字以内)</label>
-    					<textarea class="form-control" id="textarea" name="introduction" rows="3"></textarea>
+    					<textarea class="form-control" id="textarea" name="introduction" rows="3"><%= contentsdata.getIntroduction() %></textarea>
   					</div>
 					<div class="form-group">
  					    <label for="contents">コンテンツ詳細画像 (画像サイズ：800px × 500px)</label>
-					    <input type="file" class="form-control-file" id="contentsimage">
+					    <input type="file" name="picture" class="form-control-file" id="contentsimage">
   					</div>
   					<button type="submit" class="btn btn-secondary">確認</button>
 				</form>
