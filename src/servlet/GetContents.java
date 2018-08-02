@@ -101,7 +101,7 @@ public class GetContents extends HttpServlet {
 			
 		} else {
 			ArrayList<ContentsBean> arraycontents = new ArrayList<ContentsBean>();
-			arraycontents = (ArrayList<ContentsBean>)session.getAttribute("contents");
+			arraycontents = (ArrayList<ContentsBean>)session.getAttribute("activeContents");
 			
 			/**int i = 0;
 			try {
