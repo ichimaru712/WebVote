@@ -1,6 +1,7 @@
 <%@ page import="model.ContentsdataBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	ContentsdataBean contentsdataBean = (ContentsdataBean)session.getAttribute("contentsdataBean");
 	int check = (int)session.getAttribute("voteCheck");
@@ -53,7 +54,8 @@
             <!-- コンテンツ一覧 -->
             <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
                 <h1>出場者のプロフィール</h1>
-                <img src="img/nezumi.jpeg" class="img-fluid" alt="プロフィール画像" width="800px" height="500px">
+                <img class="img-fluid" src="${pageContext.request.contextPath}/GetContentsdataPicture?id=<%= contentsdataBean.getContentsID() %>&id2=<%= contentsdataBean.getContentsdataID() %>" height="500px" width="800px" alt="<%= contentsdataBean.getContentsdataName() %>">
+                <!-- <img src="img/nezumi.jpeg" class="img-fluid" alt="プロフィール画像" width="800px" height="500px"> -->
 
                 <table class="table">
                     <tr>
