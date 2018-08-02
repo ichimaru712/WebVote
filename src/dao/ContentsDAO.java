@@ -51,6 +51,81 @@ public class ContentsDAO extends DaoBase {
 		return arraycontents;
 	}
 	
+	// 開催中・開催前のコンテンツのみ取得
+	public ArrayList<ContentsBean> getActiveContents(Date date){
+		ArrayList<ContentsBean> activeContents = new ArrayList<ContentsBean>();
+		try {
+			//super.DbOpen();
+			super.connection();
+
+			String sql  ="select * from contents where startDate >= ?";
+			stmt = con.prepareStatement(sql);
+			stmt.setDate(1,date);
+			rs=stmt.executeQuery();
+			
+			while(rs.next()){
+				ContentsBean contentsbean = new ContentsBean();
+
+			    contentsbean.setContentsID(rs.getString("contentsID"));
+			    contentsbean.setContentsName(rs.getString("contentsName"));
+			    contentsbean.setContentsDate(rs.getDate("contentsDate"));
+			    contentsbean.setStartDate(rs.getDate("startDate"));
+			    contentsbean.setEndDate(rs.getDate("endDate"));
+			    contentsbean.setContentsPicture(rs.getBinaryStream("contentsPicture"));
+
+				activeContents.add(contentsbean);
+			}
+			
+		}catch(Exception e){
+			System.out.println(e);
+		}finally {
+			try{
+				super.DbClose();
+			}catch(Exception e){
+				System.out.println("error");
+			}
+		}
+		return activeContents;
+	}
+	
+	
+	// 開催終了したコンテンツのみ取得
+	public ArrayList<ContentsBean> getNoActiveContents(Date date){
+		ArrayList<ContentsBean> noactiveContents = new ArrayList<ContentsBean>();
+		try {
+			//super.DbOpen();
+			super.connection();
+
+			String sql  ="select * from contents where startDate < ?";
+			stmt = con.prepareStatement(sql);
+			stmt.setDate(1,date);
+			rs=stmt.executeQuery();
+			
+			while(rs.next()){
+				ContentsBean contentsbean = new ContentsBean();
+
+			    contentsbean.setContentsID(rs.getString("contentsID"));
+			    contentsbean.setContentsName(rs.getString("contentsName"));
+			    contentsbean.setContentsDate(rs.getDate("contentsDate"));
+			    contentsbean.setStartDate(rs.getDate("startDate"));
+			    contentsbean.setEndDate(rs.getDate("endDate"));
+			    contentsbean.setContentsPicture(rs.getBinaryStream("contentsPicture"));
+
+				noactiveContents.add(contentsbean);
+			}
+			
+		}catch(Exception e){
+			System.out.println(e);
+		}finally {
+			try{
+				super.DbClose();
+			}catch(Exception e){
+				System.out.println("error");
+			}
+		}
+		return noactiveContents;
+	}
+	
 	// 履歴テーブルから取得したcontentsIDで、コンテンツテーブルからcontentsNameを取得
 	public String getContentsName(String id){
 		String contentsID = "";

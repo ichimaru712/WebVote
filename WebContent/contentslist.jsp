@@ -11,6 +11,13 @@
 	//コンテンツ詳細取得
 	ArrayList<ContentsdataBean> contentsdata = new ArrayList<ContentsdataBean>();
 	contentsdata = (ArrayList<ContentsdataBean>)session.getAttribute("contentsdata");
+	
+	//コンテスト取得
+		ArrayList<ContentsBean> activeContents = new ArrayList<ContentsBean>();
+		activeContents = (ArrayList<ContentsBean>)session.getAttribute("activeContents");
+		
+		ArrayList<ContentsBean> noactiveContents = new ArrayList<ContentsBean>();
+		noactiveContents = (ArrayList<ContentsBean>)session.getAttribute("noactiveContents");
 %>
 <!DOCTYPE html>
 <html>
@@ -48,12 +55,22 @@
             <!-- 固定サイドメニュー -->
             <div class="col-12 col-md-3 col-xl-3 bd-sidebar">
                 <div class="list-group">
-					<a href="#" class="list-group-item list-group-item-action list-group-item-warning">開催中</a>
-					<a href="#" class="list-group-item list-group-item-action">いちまるコンテスト</a>
-					<a href="#" class="list-group-item list-group-item-action">いちまるコンテスト</a>
+					<a href="#" class="list-group-item list-group-item-action list-group-item-warning">開催前・開催中</a>
+					<% if(activeContents != null){ %>
+						<% for(int i = 0; i < activeContents.size(); i++){ %>
+							<a href="#" class="list-group-item list-group-item-action"><%= activeContents.get(i).getContentsName() %></a>
+						<% }
+					   } else { %>
+						<a href="#" class="list-group-item list-group-item-action">開催中のコンテストはありません</a>
+					<% } %>
 					<a href="#" class="list-group-item list-group-item-action list-group-item-secondary">終了</a>
-					<a href="#" class="list-group-item list-group-item-action">いちまるコンテスト</a>
-					<a href="#" class="list-group-item list-group-item-action">いちまるコンテスト</a>
+					<% if(noactiveContents != null){
+						for(int i = 0; i < noactiveContents.size(); i++){ %>
+							<a href="#" class="list-group-item list-group-item-action"><%= noactiveContents.get(i).getContentsName() %></a>
+						<% }
+					   } else { %>
+						<a href="#" class="list-group-item list-group-item-action">終了したコンテストはありません</a>
+					<% } %>
 				</div>
             </div>
 
@@ -61,11 +78,6 @@
             <main class="col-12 col-md-9 col-xl-9 bd-content">
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <% if(true){ %>
-                    	<div class="alert alert-warning textcenter" role="alert">開催中</div>
-                    <% } else { %>
-                    	<div class="alert alert-dark textcenter" role="alert">終了</div>
-                    <% } %>
                         <img class="img-responsive" src="<c:url value="/GetContentsPicture">
 						<c:param name ="id"><%= contents.getContentsID() %></c:param>
 						</c:url>" width="100%" alt="コンテンツ画像">
