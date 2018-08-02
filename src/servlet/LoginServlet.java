@@ -74,6 +74,9 @@ public class LoginServlet extends HttpServlet {
 			ArrayList<ContentsBean> activeContents = contentsDAO.getActiveContents(date);
 			//開催終了
 			ArrayList<ContentsBean> noactiveContents = contentsDAO.getNoActiveContents(date);
+			//コンテンツすべて
+			ArrayList<ContentsBean> arraycontents = contentsDAO.getAllContents();
+			session.setAttribute("contents", arraycontents);
 			
 			if(activeContents.size() == 0){
 				session.setAttribute("activeContents", null);

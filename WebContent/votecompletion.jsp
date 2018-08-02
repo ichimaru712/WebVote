@@ -2,6 +2,7 @@
 
 	pageEncoding="UTF-8"%>
 <%@page import="model.ContentsBean"%>
+<%@page import="model.ContentsdataBean"%>
 <%@page import="java.util.ArrayList"%>
 <%
 //コンテスト取得
