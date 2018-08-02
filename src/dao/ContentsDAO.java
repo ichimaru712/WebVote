@@ -58,9 +58,11 @@ public class ContentsDAO extends DaoBase {
 			//super.DbOpen();
 			super.connection();
 
-			String sql  ="select * from contents where startDate >= ?";
+			String sql  ="select * from contents where (? >= startDate and ? <= endDate) or (startDate > ?)";
 			stmt = con.prepareStatement(sql);
 			stmt.setDate(1,date);
+			stmt.setDate(2,date);
+			stmt.setDate(3,date);
 			rs=stmt.executeQuery();
 			
 			while(rs.next()){
@@ -96,7 +98,7 @@ public class ContentsDAO extends DaoBase {
 			//super.DbOpen();
 			super.connection();
 
-			String sql  ="select * from contents where startDate < ?";
+			String sql  ="select * from contents where endDate < ?";
 			stmt = con.prepareStatement(sql);
 			stmt.setDate(1,date);
 			rs=stmt.executeQuery();
