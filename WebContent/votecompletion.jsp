@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+
 	pageEncoding="UTF-8"%>
 <%@page import="model.ContentsBean"%>
 <%@page import="java.util.ArrayList"%>
@@ -9,6 +10,8 @@
 	
 	ArrayList<ContentsBean> noactiveContents = new ArrayList<ContentsBean>();
 	noactiveContents = (ArrayList<ContentsBean>)session.getAttribute("noactiveContents");
+  
+  ContentsdataBean contentsdataBean = (ContentsdataBean)session.getAttribute("contentsdataBean");
 %>
 <!DOCTYPE html>
 <html>
@@ -70,7 +73,8 @@
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<h1>投票完了</h1>
 						<div class="textcenter">
-							<img class="image" src="img/nezumi.jpeg" alt="コンテンツ画像">
+							<img class="image" src="${pageContext.request.contextPath}/GetContentsdataPicture?id=<%= contentsdataBean.getContentsID() %>&id2=<%= contentsdataBean.getContentsdataID() %>" alt="<%= contentsdataBean.getContentsdataName() %>">
+							<!-- <img class="image" src="img/nezumi.jpeg" alt="コンテンツ画像" height="500px" width="800px"> -->
 							<p class="h2">投票しました</p>
 							<a href="contents.jsp" class="btn btn-secondary">一覧へ戻る</a>
 						</div>
