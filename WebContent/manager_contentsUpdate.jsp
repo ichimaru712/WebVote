@@ -70,11 +70,11 @@
 					</div>
 					<div class="form-group">
 						<label for="start">投票開始日</label><br>
-						<input type="datetime-local" class="form-control" value="<%= updatecontents.getStartDate() %>" name="start">
+						<input type="datetime-local" class="form-control" value="<%= updatecontents.getStartDate() %>" name="start" id="start">
 					</div>
 					<div class="form-group">
 						<label for="end">投票終了日</label><br>
-						<input type="datetime-local" class="form-control" value="<%= updatecontents.getEndDate() %>" name="end">
+						<input type="datetime-local" class="form-control" value="<%= updatecontents.getEndDate() %>" name="end" id="end">
 					</div>
 					<div class="form-group">
  					    <label for="contents">コンテンツ画像</label>
@@ -101,20 +101,46 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 		crossorigin="anonymous"></script>
-	<script>
-		function check(){
-	        var flg = 0;
-	        if (document.form.contentsId.value == "" || document.form.contentsName.value == "" || document.form.starttime.value == "" || document.form.endtime.value == "") {
-	            flg = 1;
-	        }
-
-	        if (flg == 1) {
-	            alert('必須項目が入力されていません');
-	            return false;
-	        } else {
-	            return true;
-	        }
-	    }
+		<script>
+        var now = new Date();
+        var y = now.getFullYear();
+        var m = now.getMonth() + 1;
+        var startDate =now;
+        var date;
+        var sDate;
+        if(m<10){
+            m = '0'+m;
+        }
+        var d = now.getDate();
+        if(d<10){
+            d = '0'+d;
+        }
+        var today = y+'-'+m+'-'+d;
+        $('#start').on('focus', function(e) {
+            date = new Date($(this).val());
+        }); 
+        $('#start').on('change', function(e) {
+            startDate = new Date($(this).val());
+            if(startDate<=now){
+                alert("今日以降の日付を入力してください");
+                $(this).val(today);
+            }
+        $('#end').val($(this).val());
+        }); 
+        
+        
+         $('#end').on('focus', function(e) {
+            sDate =$(this).val();
+            date = new Date($(this).val());
+        }); 
+        $('#end').on('change', function(e) {
+            endDate = new Date($(this).val());
+            if(endDate<date){
+                alert("開始日以降の日付を入力してください");
+                $(this).val(today);
+            }
+        $('#end').val(sDate);
+        }); 
 	</script>
 </body>
 </html>
